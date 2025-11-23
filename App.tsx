@@ -16,6 +16,9 @@ import { DucatiMonster } from './pages/DucatiMonster';
 import { DucatiScramblerAwareness } from './pages/DucatiScramblerAwareness';
 import { NewPorsche911 } from './pages/NewPorsche911';
 import { PorscheCarreraGT } from './pages/PorscheCarreraGT';
+import { DucatiXDiavelPress } from './pages/DucatiXDiavelPress';
+import { PorscheClubs50Year } from './pages/PorscheClubs50Year';
+import { DucatiScramblerCustomFlatTrack } from './pages/DucatiScramblerCustomFlatTrack';
 
 const slides = [
   { id: 'cover', component: Cover, label: 'Cover' },
@@ -30,7 +33,7 @@ const slides = [
 const App: React.FC = () => {
   const { isAuthenticated, isLoading, login, error } = useAuth();
   const [activeSlide, setActiveSlide] = useState(slides[0].id);
-  const [currentPage, setCurrentPage] = useState<'slides' | 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt'>('slides');
+  const [currentPage, setCurrentPage] = useState<'slides' | 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt' | 'ducati-x-diavel-press' | 'porsche-clubs-50-year' | 'ducati-scrambler-custom-flat-track'>('slides');
   const [returnToSlide, setReturnToSlide] = useState<string>('ecosystem');
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -54,7 +57,7 @@ const App: React.FC = () => {
 
   const navigateToDetailPage = (pageId: string, fromSlide: string) => {
     setReturnToSlide(fromSlide);
-    setCurrentPage(pageId as 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt');
+    setCurrentPage(pageId as 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt' | 'ducati-x-diavel-press' | 'porsche-clubs-50-year' | 'ducati-scrambler-custom-flat-track');
   };
 
   const navigateBackToSlides = () => {
@@ -147,6 +150,36 @@ const App: React.FC = () => {
         {/* Global Background Noise/Gradient Texture */}
         <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
         <PorscheCarreraGT onBack={navigateBackToSlides} />
+      </div>
+    );
+  }
+
+  if (currentPage === 'ducati-x-diavel-press') {
+    return (
+      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
+        {/* Global Background Noise/Gradient Texture */}
+        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
+        <DucatiXDiavelPress onBack={navigateBackToSlides} />
+      </div>
+    );
+  }
+
+  if (currentPage === 'porsche-clubs-50-year') {
+    return (
+      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
+        {/* Global Background Noise/Gradient Texture */}
+        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
+        <PorscheClubs50Year onBack={navigateBackToSlides} />
+      </div>
+    );
+  }
+
+  if (currentPage === 'ducati-scrambler-custom-flat-track') {
+    return (
+      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
+        {/* Global Background Noise/Gradient Texture */}
+        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
+        <DucatiScramblerCustomFlatTrack onBack={navigateBackToSlides} />
       </div>
     );
   }

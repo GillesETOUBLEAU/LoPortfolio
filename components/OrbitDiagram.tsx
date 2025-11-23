@@ -142,9 +142,12 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const isDucatiXDiavel = node.label === 'Ducati X Diavel';
           const isDucatiMonster = node.label === 'Ducati Monster';
           const isDucatiScramblerAwareness = node.label === 'Ducati Scrambler' && node.subLabel === 'Awareness';
+          const isDucatiScramblerCustomFlatTrack = node.label === 'Ducati Scrambler' && node.subLabel === 'Custom Flat Track';
           const isNewPorsche911 = node.label === 'New Porsche 911' && node.subLabel === '997 Type';
           const isPorscheCarreraGT = node.label === 'Porsche Carrera GT' && node.subLabel === 'World Premiere Le Louvre';
-          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness || isNewPorsche911 || isPorscheCarreraGT;
+          const isDucatiXDiavelPress = node.label === 'Ducati X DIAVEL' && node.subLabel === '2nd Year - Paris at Dawn movie';
+          const isPorscheClubs50Year = node.label === 'Porsche Clubs 50 year' && node.subLabel === 'Le Mans Pit Lane Diner';
+          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness || isDucatiScramblerCustomFlatTrack || isNewPorsche911 || isPorscheCarreraGT || isDucatiXDiavelPress || isPorscheClubs50Year;
           
           const handleClick = () => {
             if (!onNavigateToDetail || !currentSlideId) return;
@@ -159,10 +162,16 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
               onNavigateToDetail('ducati-monster', currentSlideId);
             } else if (isDucatiScramblerAwareness) {
               onNavigateToDetail('ducati-scrambler-awareness', currentSlideId);
+            } else if (isDucatiScramblerCustomFlatTrack) {
+              onNavigateToDetail('ducati-scrambler-custom-flat-track', currentSlideId);
             } else if (isNewPorsche911) {
               onNavigateToDetail('new-porsche-911', currentSlideId);
             } else if (isPorscheCarreraGT) {
               onNavigateToDetail('porsche-carrera-gt', currentSlideId);
+            } else if (isDucatiXDiavelPress) {
+              onNavigateToDetail('ducati-x-diavel-press', currentSlideId);
+            } else if (isPorscheClubs50Year) {
+              onNavigateToDetail('porsche-clubs-50-year', currentSlideId);
             }
           };
           
