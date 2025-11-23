@@ -22,7 +22,7 @@ const positionClasses = {
 export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title }) => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-grid-4">
-      {title && <h3 className="text-xl font-bold mb-grid-4 text-center uppercase tracking-widest text-white/90">{title}</h3>}
+      {title && <h3 className="text-xl font-bold mb-12 text-center uppercase tracking-widest text-white/90">{title}</h3>}
       
       <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
         {/* Main Orbit Ring */}
