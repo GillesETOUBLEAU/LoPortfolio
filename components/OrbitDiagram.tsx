@@ -6,6 +6,8 @@ interface OrbitDiagramProps {
   center: OrbitCenterData;
   nodes: OrbitNodeData[];
   title?: string;
+  onNavigateToDetail?: (pageId: string, fromSlide: string) => void;
+  currentSlideId?: string;
 }
 
 // Helper function to calculate position for evenly spaced cards around a circle
@@ -72,7 +74,7 @@ const positionClasses = {
   'top-left-mid': '',
 };
 
-export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title }) => {
+export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title, onNavigateToDetail, currentSlideId }) => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-grid-4">
       {title && <h3 className="text-xl font-bold mb-12 text-center uppercase tracking-widest text-white/90">{title}</h3>}
@@ -134,13 +136,25 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const style = useInlineStyle ? getPositionStyle(node.position) : undefined;
           const className = useInlineStyle ? 'absolute w-40 z-20' : `absolute ${positionClasses[node.position]} w-40 z-20`;
           
+          // Check if this is Porsche Panamera and should be clickable
+          const isPorschePanamera = node.label === 'Porsche Panamera';
+          const handleClick = () => {
+            if (isPorschePanamera && onNavigateToDetail && currentSlideId) {
+              onNavigateToDetail('porsche-panamera', currentSlideId);
+            }
+          };
+          
           return (
             <div 
               key={node.id} 
               className={className}
               style={style}
             >
-               <GlassCard intensity="medium" className="p-4 text-center hover:bg-white/20 transition-colors duration-300">
+               <GlassCard 
+                 intensity="medium" 
+                 className={`p-4 text-center hover:bg-white/20 transition-colors duration-300 ${isPorschePanamera ? 'cursor-pointer' : ''}`}
+                 onClick={isPorschePanamera ? handleClick : undefined}
+               >
                   <span className="block font-semibold text-sm">{node.label}</span>
                   {node.subLabel && <span className="block text-xs text-white/60 mt-1">{node.subLabel}</span>}
                </GlassCard>

@@ -45,7 +45,11 @@ const ecosystemData = {
   }
 };
 
-export const OrbitSystem: React.FC = () => {
+interface OrbitSystemProps {
+  onNavigateToDetail?: (pageId: string, fromSlide: string) => void;
+}
+
+export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail }) => {
   const [activeTab, setActiveTab] = useState<'product' | 'crm' | 'press' | 'dealer'>('product');
 
   const tabs = [
@@ -91,7 +95,9 @@ export const OrbitSystem: React.FC = () => {
          <OrbitDiagram 
             key={activeTab} // Force re-render on tab change for animation
             center={currentData.center} 
-            nodes={currentData.nodes} 
+            nodes={currentData.nodes}
+            onNavigateToDetail={onNavigateToDetail}
+            currentSlideId="ecosystem"
         />
       </div>
     </div>
