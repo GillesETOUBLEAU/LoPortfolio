@@ -8,7 +8,6 @@ export const DucatiMonster: React.FC<DucatiMonsterProps> = ({ onBack }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const images = [
-    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928274764-bq2jz.png',
     'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928275169-51b39g.png',
   ];
 
@@ -73,12 +72,12 @@ export const DucatiMonster: React.FC<DucatiMonsterProps> = ({ onBack }) => {
           </div>
         </div>
 
-        {/* Images Section - 2 images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-grid-2">
+        {/* Images Section - 1 image */}
+        <div className="flex justify-center">
           {images.map((imageUrl, index) => (
             <div
               key={index}
-              className="relative group cursor-pointer overflow-hidden rounded-xl-custom"
+              className="relative group cursor-pointer overflow-hidden rounded-xl-custom max-w-4xl"
               onClick={() => handleImageClick(imageUrl)}
             >
               <img

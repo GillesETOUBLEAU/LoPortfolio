@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-interface DucatiXDiavelProps {
+interface NewPorsche911Props {
   onBack: () => void;
 }
 
-export const DucatiXDiavel: React.FC<DucatiXDiavelProps> = ({ onBack }) => {
+export const NewPorsche911: React.FC<NewPorsche911Props> = ({ onBack }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const imageUrl = 'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928286453-13kfm0i.jpg';
+  const imageUrl = 'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928298164-tb0ufq.png';
 
   const handleImageClick = () => {
     setSelectedImage(imageUrl);
@@ -16,6 +16,7 @@ export const DucatiXDiavel: React.FC<DucatiXDiavelProps> = ({ onBack }) => {
   const closeModal = () => {
     setSelectedImage(null);
   };
+
   return (
     <div className="h-full w-full flex flex-col items-center justify-center p-grid-4 relative overflow-hidden">
       {/* Background Image */}
@@ -61,7 +62,7 @@ export const DucatiXDiavel: React.FC<DucatiXDiavelProps> = ({ onBack }) => {
           >
             <img
               src={imageUrl}
-              alt="Ducati X Diavel"
+              alt="New Porsche 911 997 Type"
               className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">

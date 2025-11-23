@@ -142,7 +142,9 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const isDucatiXDiavel = node.label === 'Ducati X Diavel';
           const isDucatiMonster = node.label === 'Ducati Monster';
           const isDucatiScramblerAwareness = node.label === 'Ducati Scrambler' && node.subLabel === 'Awareness';
-          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness;
+          const isNewPorsche911 = node.label === 'New Porsche 911' && node.subLabel === '997 Type';
+          const isPorscheCarreraGT = node.label === 'Porsche Carrera GT' && node.subLabel === 'World Premiere Le Louvre';
+          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness || isNewPorsche911 || isPorscheCarreraGT;
           
           const handleClick = () => {
             if (!onNavigateToDetail || !currentSlideId) return;
@@ -157,6 +159,10 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
               onNavigateToDetail('ducati-monster', currentSlideId);
             } else if (isDucatiScramblerAwareness) {
               onNavigateToDetail('ducati-scrambler-awareness', currentSlideId);
+            } else if (isNewPorsche911) {
+              onNavigateToDetail('new-porsche-911', currentSlideId);
+            } else if (isPorscheCarreraGT) {
+              onNavigateToDetail('porsche-carrera-gt', currentSlideId);
             }
           };
           
