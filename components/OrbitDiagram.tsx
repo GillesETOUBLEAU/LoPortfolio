@@ -26,7 +26,7 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
       
       <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
         {/* Main Orbit Ring */}
-        <div className="absolute inset-0 rounded-full border-2 border-white/10 border-dashed animate-spin-slow" style={{ animationDuration: '60s' }}></div>
+        <div className="absolute inset-0 rounded-full border-[3px] border-white/60 border-dashed animate-spin-slow z-0" style={{ animationDuration: '60s' }}></div>
         
         {/* Center Node */}
         <div className="absolute inset-0 flex items-center justify-center">
