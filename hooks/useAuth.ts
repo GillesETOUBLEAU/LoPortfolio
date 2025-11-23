@@ -17,6 +17,16 @@ export const useAuth = () => {
 
   // Check for existing token on mount
   useEffect(() => {
+    // Bypass authentication in development mode
+    if (import.meta.env.DEV) {
+      setAuthState({
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+      return;
+    }
+
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
     if (token) {
       // Verify token is still valid (not expired)
@@ -58,6 +68,16 @@ export const useAuth = () => {
   }, []);
 
   const login = async (password: string): Promise<boolean> => {
+    // Bypass authentication in development mode
+    if (import.meta.env.DEV) {
+      setAuthState({
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+      return true;
+    }
+
     setAuthState((prev) => ({ ...prev, isLoading: true, error: null }));
 
     try {
