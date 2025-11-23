@@ -17,24 +17,24 @@ const ecosystemData = {
   crm: {
     center: { label: 'WEB UX', subLabel: 'Ducati France international benchmark' },
     nodes: [
-      { id: '1', label: 'Salesforce', subLabel: 'WW CRM', position: 'top' },
-      { id: '2', label: 'Lead Management', subLabel: 'Web', position: 'top-right-mid' },
-      { id: '3', label: 'Call Center', position: 'bottom-right-mid' },
-      { id: '4', label: 'Test Rides', subLabel: 'Dealer Shop / Events', position: 'bottom' },
-      { id: '5', label: 'Conversion', subLabel: 'Test Ride Sales', position: 'bottom-left-mid' },
-      { id: '6', label: 'Conversion', subLabel: 'Leads Test Ride', position: 'top-left-mid' },
+      { id: '1', label: 'SALESFORCE', subLabel: 'WW CRM', position: 'top' },
+      { id: '2', label: 'LEAD MANAGEMENT', subLabel: 'Web', position: 'top-right-mid' },
+      { id: '3', label: 'CALL CENTER', position: 'bottom-right-mid' },
+      { id: '4', label: 'CONVERSION', subLabel: 'Leads Test Ride', position: 'bottom' },
+      { id: '5', label: 'TEST RIDES', subLabel: 'Dealer Shop / Events', position: 'bottom-left-mid' },
+      { id: '6', label: 'CONVERSION', subLabel: 'Test Ride Sales', position: 'top-left-mid' },
     ] as OrbitNodeData[]
   },
   press: {
     center: { label: 'PRESS / MEDIA', subLabel: '& Influencers Activations' },
     nodes: [
       { id: '1', label: 'Carrera GT', position: 'top' },
-      { id: '2', label: 'X Diavel', position: 'right' },
-      { id: '3', label: 'Unforgettable Invitation', position: 'bottom' },
-      { id: '4', label: 'Scrambler', subLabel: 'Flat Track', position: 'left' },
-      { id: '5', label: 'International Premiere', subLabel: 'Louvre', position: 'top-right' },
-      { id: '6', label: 'Crossing Paris at Dawn', position: 'right' }, 
-      { id: '7', label: 'Alps Motorcycle Adventure', position: 'left' }, 
+      { id: '2', label: 'X Diavel', position: 'top-right-mid-7' },
+      { id: '3', label: 'International Premiere', subLabel: 'Louvre', position: 'bottom-right-mid-7' },
+      { id: '4', label: 'Unforgettable Invitation', position: 'bottom-right-mid-7-2' },
+      { id: '5', label: 'Scrambler', subLabel: 'Flat Track', position: 'bottom-left-mid-7' },
+      { id: '6', label: 'Crossing Paris at Dawn', position: 'bottom-left-mid-7-2' },
+      { id: '7', label: 'Alps Motorcycle Adventure', position: 'top-left-mid-7' }, 
     ] as OrbitNodeData[]
   },
   dealer: {
@@ -56,7 +56,7 @@ export const OrbitSystem: React.FC = () => {
   const tabs = [
     { id: 'product', label: 'Product Lifecycle' },
     { id: 'crm', label: 'Web / UX' },
-    { id: 'press', label: 'Press & Activation' },
+    { id: 'press', label: 'Press and Influencers' },
     { id: 'dealer', label: 'Dealer Marketing' },
   ];
 

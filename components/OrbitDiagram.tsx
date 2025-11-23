@@ -18,6 +18,13 @@ const getPositionStyle = (position: string, radius: number = 42): React.CSSPrope
     'bottom': 180,
     'bottom-left-mid': 240,
     'top-left-mid': 300,
+    // 7-card evenly spaced positions (360/7 ≈ 51.43° intervals)
+    'top-right-mid-7': 51.43,
+    'bottom-right-mid-7': 102.86,
+    'bottom-right-mid-7-2': 154.29,
+    'bottom-left-mid-7': 205.71,
+    'bottom-left-mid-7-2': 257.14,
+    'top-left-mid-7': 308.57,
     // Fallback positions for other tabs
     'right': 90,
     'left': 270,
@@ -63,8 +70,39 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
       {title && <h3 className="text-xl font-bold mb-12 text-center uppercase tracking-widest text-white/90">{title}</h3>}
       
       <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
-        {/* Main Orbit Ring */}
-        <div className="absolute inset-0 rounded-full border-[3px] border-white/60 border-dashed animate-spin-slow z-0" style={{ animationDuration: '60s' }}></div>
+        {/* Rotating container for orbit ring and arrows */}
+        <div className="absolute inset-0 animate-spin-slow z-0" style={{ animationDuration: '60s' }}>
+          {/* Main Orbit Ring */}
+          <div className="absolute inset-0 rounded-full border-[3px] border-white/60 border-dashed"></div>
+          
+          {/* Arrow elements positioned along the circle */}
+          {Array.from({ length: 12 }).map((_, i) => {
+            const angle = (i * 30 - 90) * (Math.PI / 180); // Start at top, 30° intervals
+            const radius = 50; // Percentage from center
+            const x = 50 + radius * Math.cos(angle);
+            const y = 50 + radius * Math.sin(angle);
+            const rotation = (i * 30) % 360;
+            
+            return (
+              <div
+                key={`arrow-${i}`}
+                className="absolute"
+                style={{
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path
+                    d="M 0 6 L 10 2 L 10 10 Z"
+                    fill="rgba(255, 255, 255, 0.6)"
+                  />
+                </svg>
+              </div>
+            );
+          })}
+        </div>
         
         {/* Center Node */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -77,7 +115,12 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
         {/* Satellite Nodes */}
         {nodes.map((node) => {
           // Use inline styles for intermediate positions and standard positions when part of even distribution
-          const useInlineStyle = ['top-right-mid', 'bottom-right-mid', 'bottom-left-mid', 'top-left-mid', 'top', 'bottom'].includes(node.position);
+          const useInlineStyle = [
+            'top-right-mid', 'bottom-right-mid', 'bottom-left-mid', 'top-left-mid', 
+            'top', 'bottom',
+            'top-right-mid-7', 'bottom-right-mid-7', 'bottom-right-mid-7-2',
+            'bottom-left-mid-7', 'bottom-left-mid-7-2', 'top-left-mid-7'
+          ].includes(node.position);
           const style = useInlineStyle ? getPositionStyle(node.position) : undefined;
           const className = useInlineStyle ? 'absolute w-40 z-20' : `absolute ${positionClasses[node.position]} w-40 z-20`;
           
