@@ -7,14 +7,15 @@ interface DucatiMultistradaV4Props {
 export const DucatiMultistradaV4: React.FC<DucatiMultistradaV4Props> = ({ onBack }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const section1Images = [
-    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928262484-eqn4br.jpg',
+  const row1Images = [
+    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763936041145-ibx8u.png',
     'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928261795-ctxsrc.png',
   ];
 
-  const section2Images = [
-    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928260560-gpbor.jpg',
+  const row2Images = [
     'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928261266-ucj9s.jpg',
+    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928262484-eqn4br.jpg',
+    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928260560-gpbor.jpg',
   ];
 
   const handleImageClick = (imageUrl: string) => {
@@ -62,9 +63,9 @@ export const DucatiMultistradaV4: React.FC<DucatiMultistradaV4Props> = ({ onBack
 
       {/* Content Container */}
       <div className="w-full max-w-7xl mx-auto relative z-10 space-y-grid-3 overflow-y-auto py-20">
-        {/* First Section - 2 images */}
+        {/* First Row - 2 images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-grid-2">
-          {section1Images.map((imageUrl, index) => (
+          {row1Images.map((imageUrl, index) => (
             <div
               key={index}
               className="relative group cursor-pointer overflow-hidden rounded-xl-custom"
@@ -94,9 +95,9 @@ export const DucatiMultistradaV4: React.FC<DucatiMultistradaV4Props> = ({ onBack
           ))}
         </div>
 
-        {/* Second Section - 2 images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-grid-2">
-          {section2Images.map((imageUrl, index) => (
+        {/* Second Row - 3 images */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-grid-2">
+          {row2Images.map((imageUrl, index) => (
             <div
               key={index}
               className="relative group cursor-pointer overflow-hidden rounded-xl-custom"
@@ -104,7 +105,7 @@ export const DucatiMultistradaV4: React.FC<DucatiMultistradaV4Props> = ({ onBack
             >
               <img
                 src={imageUrl}
-                alt={`Ducati Multistrada V4 ${index + 3}`}
+                alt={`Ducati Multistrada V4 ${index + 4}`}
                 className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">

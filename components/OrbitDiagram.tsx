@@ -139,7 +139,9 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           // Check if this card should be clickable
           const isPorschePanamera = node.label === 'Porsche Panamera';
           const isDucatiMultistradaV4 = node.label === 'Ducati Multistrada V4';
-          const isClickable = isPorschePanamera || isDucatiMultistradaV4;
+          const isDucatiXDiavel = node.label === 'Ducati X Diavel';
+          const isDucatiMonster = node.label === 'Ducati Monster';
+          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster;
           
           const handleClick = () => {
             if (!onNavigateToDetail || !currentSlideId) return;
@@ -148,6 +150,10 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
               onNavigateToDetail('porsche-panamera', currentSlideId);
             } else if (isDucatiMultistradaV4) {
               onNavigateToDetail('ducati-multistrada-v4', currentSlideId);
+            } else if (isDucatiXDiavel) {
+              onNavigateToDetail('ducati-x-diavel', currentSlideId);
+            } else if (isDucatiMonster) {
+              onNavigateToDetail('ducati-monster', currentSlideId);
             }
           };
           
