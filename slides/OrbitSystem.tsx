@@ -7,11 +7,11 @@ const ecosystemData = {
     center: { label: 'PRODUCT', subLabel: 'Range extension, New Targets' },
     nodes: [
       { id: '1', label: 'Porsche Panamera', position: 'top' },
-      { id: '2', label: 'Ducati Multistrada V4', position: 'top-right' },
-      { id: '3', label: 'Ducati X Diavel', position: 'bottom-right' },
+      { id: '2', label: 'Ducati Multistrada V4', position: 'top-right-mid' },
+      { id: '3', label: 'Ducati X Diavel', position: 'bottom-right-mid' },
       { id: '4', label: 'Ducati Monster', position: 'bottom' },
-      { id: '5', label: 'Scrambler', subLabel: 'Awareness', position: 'bottom-left' },
-      { id: '6', label: 'New 911', subLabel: '997 Type', position: 'top-left' },
+      { id: '5', label: 'Scrambler', subLabel: 'Awareness', position: 'bottom-left-mid' },
+      { id: '6', label: 'New 911', subLabel: '997 Type', position: 'top-left-mid' },
     ] as OrbitNodeData[]
   },
   crm: {

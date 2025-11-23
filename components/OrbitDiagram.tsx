@@ -17,6 +17,10 @@ const positionClasses = {
   'top-right': 'top-[15%] right-[15%] translate-x-1/2 -translate-y-1/2',
   'bottom-left': 'bottom-[15%] left-[15%] -translate-x-1/2 translate-y-1/2',
   'bottom-right': 'bottom-[15%] right-[15%] translate-x-1/2 translate-y-1/2',
+  'top-right-mid': 'top-[13%] right-[25%] translate-x-1/2 -translate-y-1/2',
+  'bottom-right-mid': 'bottom-[13%] right-[25%] translate-x-1/2 translate-y-1/2',
+  'bottom-left-mid': 'bottom-[13%] left-[25%] -translate-x-1/2 translate-y-1/2',
+  'top-left-mid': 'top-[13%] left-[25%] -translate-x-1/2 -translate-y-1/2',
 };
 
 export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title }) => {
