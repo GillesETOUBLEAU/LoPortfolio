@@ -136,11 +136,18 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const style = useInlineStyle ? getPositionStyle(node.position) : undefined;
           const className = useInlineStyle ? 'absolute w-40 z-20' : `absolute ${positionClasses[node.position]} w-40 z-20`;
           
-          // Check if this is Porsche Panamera and should be clickable
+          // Check if this card should be clickable
           const isPorschePanamera = node.label === 'Porsche Panamera';
+          const isDucatiMultistradaV4 = node.label === 'Ducati Multistrada V4';
+          const isClickable = isPorschePanamera || isDucatiMultistradaV4;
+          
           const handleClick = () => {
-            if (isPorschePanamera && onNavigateToDetail && currentSlideId) {
+            if (!onNavigateToDetail || !currentSlideId) return;
+            
+            if (isPorschePanamera) {
               onNavigateToDetail('porsche-panamera', currentSlideId);
+            } else if (isDucatiMultistradaV4) {
+              onNavigateToDetail('ducati-multistrada-v4', currentSlideId);
             }
           };
           
@@ -152,8 +159,8 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
             >
                <GlassCard 
                  intensity="medium" 
-                 className={`p-4 text-center hover:bg-white/20 transition-colors duration-300 ${isPorschePanamera ? 'cursor-pointer' : ''}`}
-                 onClick={isPorschePanamera ? handleClick : undefined}
+                 className={`p-4 text-center hover:bg-white/20 transition-colors duration-300 ${isClickable ? 'cursor-pointer' : ''}`}
+                 onClick={isClickable ? handleClick : undefined}
                >
                   <span className="block font-semibold text-sm">{node.label}</span>
                   {node.subLabel && <span className="block text-xs text-white/60 mt-1">{node.subLabel}</span>}

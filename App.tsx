@@ -10,6 +10,7 @@ import { Navigation } from './components/Navigation';
 import { Login } from './components/Login';
 import { useAuth } from './hooks/useAuth';
 import { PorschePanamera } from './pages/PorschePanamera';
+import { DucatiMultistradaV4 } from './pages/DucatiMultistradaV4';
 
 const slides = [
   { id: 'cover', component: Cover, label: 'Cover' },
@@ -24,7 +25,7 @@ const slides = [
 const App: React.FC = () => {
   const { isAuthenticated, isLoading, login, error } = useAuth();
   const [activeSlide, setActiveSlide] = useState(slides[0].id);
-  const [currentPage, setCurrentPage] = useState<'slides' | 'porsche-panamera'>('slides');
+  const [currentPage, setCurrentPage] = useState<'slides' | 'porsche-panamera' | 'ducati-multistrada-v4'>('slides');
   const [returnToSlide, setReturnToSlide] = useState<string>('ecosystem');
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -48,7 +49,7 @@ const App: React.FC = () => {
 
   const navigateToDetailPage = (pageId: string, fromSlide: string) => {
     setReturnToSlide(fromSlide);
-    setCurrentPage(pageId as 'porsche-panamera');
+    setCurrentPage(pageId as 'porsche-panamera' | 'ducati-multistrada-v4');
   };
 
   const navigateBackToSlides = () => {
@@ -81,6 +82,16 @@ const App: React.FC = () => {
         {/* Global Background Noise/Gradient Texture */}
         <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
         <PorschePanamera onBack={navigateBackToSlides} />
+      </div>
+    );
+  }
+
+  if (currentPage === 'ducati-multistrada-v4') {
+    return (
+      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
+        {/* Global Background Noise/Gradient Texture */}
+        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
+        <DucatiMultistradaV4 onBack={navigateBackToSlides} />
       </div>
     );
   }
