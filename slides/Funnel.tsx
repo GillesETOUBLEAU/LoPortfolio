@@ -41,31 +41,31 @@ const awarenessSteps: ReadonlyArray<string> = [
 ] as const;
 
 const funnelLayers: ReadonlyArray<LayerConfig> = [
-  { id: 'vision', label: 'VISION', widthPercent: 100, background: '#f3f4f7', borderColor: '#d7dce8' },
-  { id: 'image', label: 'IMAGE', widthPercent: 92, background: '#e7e9ef', borderColor: '#ccd2df' },
+  { id: 'vision', label: 'VISION', widthPercent: 100, background: 'rgba(255, 255, 255, 0.1)', borderColor: 'rgba(255, 255, 255, 0.2)' },
+  { id: 'image', label: 'IMAGE', widthPercent: 92, background: 'rgba(255, 255, 255, 0.12)', borderColor: 'rgba(255, 255, 255, 0.25)' },
   {
     id: 'experiences',
     label: 'EXPERIENCES',
     widthPercent: 82,
-    background: '#1d4c8d',
-    textColor: '#f1f5fe',
-    borderColor: '#12315f',
+    background: 'rgba(239, 68, 68, 0.3)',
+    textColor: '#ffffff',
+    borderColor: 'rgba(239, 68, 68, 0.4)',
     description: (
       <>
-        <p className="text-xs font-semibold uppercase tracking-wide">Enrich client lifes / Ride</p>
-        <p className="text-xs italic">The test ride - drive as a conversion tool.</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-white/90">Enrich client lifes / Ride</p>
+        <p className="text-xs italic text-white/70">The test ride - drive as a conversion tool.</p>
       </>
     ),
   },
-  { id: 'conversion', label: 'CONVERSION', widthPercent: 62, background: '#d7dbe5', borderColor: '#c2c8d6' },
+  { id: 'conversion', label: 'CONVERSION', widthPercent: 62, background: 'rgba(255, 255, 255, 0.15)', borderColor: 'rgba(255, 255, 255, 0.3)' },
 ] as const;
 
 const FunnelLayer: React.FC<LayerConfig> = ({
   label,
   widthPercent,
   background,
-  textColor = '#0c2244',
-  borderColor = '#d0d5e1',
+  textColor = '#ffffff',
+  borderColor = 'rgba(255, 255, 255, 0.2)',
   description,
 }) => {
   const layerStyle: CSSProperties = {
@@ -73,12 +73,13 @@ const FunnelLayer: React.FC<LayerConfig> = ({
     background,
     border: `1px solid ${borderColor}`,
     clipPath: 'polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%)',
+    backdropFilter: 'blur(12px)',
   };
 
   return (
     <div className="flex justify-center">
       <div
-        className="relative px-6 py-6 text-center shadow-md shadow-black/10"
+        className="relative px-6 py-6 text-center shadow-lg shadow-black/20"
         style={layerStyle}
       >
         <div
@@ -87,7 +88,7 @@ const FunnelLayer: React.FC<LayerConfig> = ({
         >
           {label}
         </div>
-        {description ? <div className="mt-2 text-[#dbe6ff]">{description}</div> : null}
+        {description ? <div className="mt-2">{description}</div> : null}
       </div>
     </div>
   );
@@ -95,7 +96,7 @@ const FunnelLayer: React.FC<LayerConfig> = ({
 
 export const Funnel: React.FC = () => {
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-white px-4 py-10 text-[#0c2244]">
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-slate-950 px-4 py-10 text-white">
       <div className="absolute inset-0 z-0">
         <img
           src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918125246-ho5xik.jpg"
@@ -129,18 +130,18 @@ export const Funnel: React.FC = () => {
           <div className="flex flex-col gap-6 text-right">
             {leftStages.map((stage) => (
               <div key={stage.id} className="relative pr-6">
-                <div className="rounded-l-full rounded-r-[2rem] bg-gradient-to-r from-[#dfe6f5] to-white px-4 py-4 shadow">
+                <div className="rounded-l-full rounded-r-[2rem] bg-white/10 backdrop-blur-md border border-white/20 px-4 py-4 shadow-lg">
                   {stage.lines.map((line) => (
                     <p
                       key={line}
-                      className="text-sm font-bold uppercase tracking-wide text-[#1b3773] leading-tight"
+                      className="text-sm font-bold uppercase tracking-wide text-white leading-tight"
                     >
                       {line}
                     </p>
                   ))}
                 </div>
                 <div className="pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 lg:block">
-                  <div className="h-0 w-0 border-y-[18px] border-y-transparent border-l-[20px] border-l-[#dfe6f5]" />
+                  <div className="h-0 w-0 border-y-[18px] border-y-transparent border-l-[20px] border-l-white/10" />
                 </div>
               </div>
             ))}
@@ -157,13 +158,13 @@ export const Funnel: React.FC = () => {
           <div className="flex flex-col items-center gap-3">
             {awarenessSteps.map((step, index) => (
               <React.Fragment key={step}>
-                <div className="w-full max-w-[170px] rounded-lg bg-gradient-to-r from-[#7b848f] to-[#4e5258] px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-white">
+                <div className="w-full max-w-[170px] rounded-lg bg-white/10 backdrop-blur-md border border-white/20 px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-white shadow-lg">
                   {step}
                 </div>
                 {index < awarenessSteps.length - 1 ? (
                   <div className="flex flex-col items-center">
-                    <div className="h-4 w-[2px] bg-[#7b848f]" />
-                    <div className="h-0 w-0 border-x-3 border-y-0 border-t-4 border-x-transparent border-t-[#7b848f]" />
+                    <div className="h-4 w-[2px] bg-white/30" />
+                    <div className="h-0 w-0 border-x-3 border-y-0 border-t-4 border-x-transparent border-t-white/30" />
                   </div>
                 ) : null}
               </React.Fragment>

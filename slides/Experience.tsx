@@ -26,10 +26,13 @@ export const Experience: React.FC = () => {
 
       <div className="flex flex-col md:flex-row items-center gap-grid-4 md:gap-grid-5 w-full max-w-5xl relative z-10">
         
-        {/* Porsche Side */}
+        {/* Ducati Side */}
         <div className="flex-1 text-right space-y-4 order-2 md:order-1">
-           <div className="text-2xl font-bold tracking-tight">PORSCHE</div>
-           <p className="text-white/70 text-sm">Still the best sports car manufacturer</p>
+           <div className="text-2xl font-bold tracking-tight text-red-500">DUCATI</div>
+           <ul className="text-white/70 text-sm space-y-1 text-right">
+             <li>› Enrich people's lives</li>
+             <li>› Be an entertainment brand</li>
+           </ul>
         </div>
 
         {/* Center Gauge */}
@@ -37,9 +40,9 @@ export const Experience: React.FC = () => {
             <svg viewBox="0 0 100 100" className="w-full h-full">
                 {/* Background Ring */}
                 <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
-                {/* Ducati Segment (Red) - 1/3 starting from 6 o'clock */}
+                {/* Ducati Segment (Red) - 1/3 starting from 6 o'clock, mirrored to left side */}
                 <path
-                    d="M 50 90 A 40 40 0 0 0 84.64 30"
+                    d="M 50 90 A 40 40 0 0 1 15.36 30"
                     fill="transparent"
                     stroke="#ef4444"
                     strokeWidth="10"
@@ -48,7 +51,7 @@ export const Experience: React.FC = () => {
                 />
                 {/* Porsche Segment (Dark) - 2/3 finishing the circle */}
                 <path
-                    d="M 84.64 30 A 40 40 0 1 0 50 90"
+                    d="M 15.36 30 A 40 40 0 1 1 50 90"
                     fill="transparent"
                     stroke="#1e293b"
                     strokeWidth="10"
@@ -65,13 +68,10 @@ export const Experience: React.FC = () => {
             </div>
         </div>
 
-        {/* Ducati Side */}
+        {/* Porsche Side */}
         <div className="flex-1 text-left space-y-4 order-3">
-           <div className="text-2xl font-bold tracking-tight text-red-500">DUCATI</div>
-           <ul className="text-white/70 text-sm space-y-1">
-             <li>› Enrich people's lives</li>
-             <li>› Be an entertainment brand</li>
-           </ul>
+           <div className="text-2xl font-bold tracking-tight">PORSCHE</div>
+           <p className="text-white/70 text-sm">Still the best sports car manufacturer</p>
         </div>
       </div>
     </div>
