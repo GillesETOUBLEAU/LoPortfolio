@@ -99,17 +99,19 @@ export const Funnel: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-white" />
       <div className="relative z-10 flex w-full max-w-6xl flex-col gap-10">
         {/* Top Inputs */}
-        <div className="flex flex-wrap items-start justify-between gap-6">
-          {topInputs.map((item) => (
-            <div key={item.title} className="flex flex-col items-center text-center">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em]">
-                {item.title}
-              </span>
-              <span className="text-[11px] text-[#3f536f]">{item.subtitle}</span>
-              <div className="mt-4 h-10 w-px bg-[#0f3973]" />
-              <div className="h-0 w-0 border-x-4 border-t-6 border-x-transparent border-t-[#0f3973]" />
-            </div>
-          ))}
+        <div className="flex justify-center">
+          <div className="flex w-full max-w-3xl flex-wrap items-start justify-between gap-8">
+            {topInputs.map((item) => (
+              <div key={item.title} className="flex flex-col items-center text-center">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em]">
+                  {item.title}
+                </span>
+                <span className="text-[11px] text-[#3f536f]">{item.subtitle}</span>
+                <div className="mt-4 h-10 w-px bg-[#0f3973]" />
+                <div className="h-0 w-0 border-x-4 border-t-6 border-x-transparent border-t-[#0f3973]" />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[220px,1fr,200px]">
@@ -136,18 +138,9 @@ export const Funnel: React.FC = () => {
 
           {/* Central Funnel */}
           <div className="flex flex-col gap-4">
-            {funnelLayers.map((layer) => {
-              if (layer.id === 'experiences') {
-                return (
-                  <div key={layer.id} className="relative">
-                    <div className="pointer-events-none absolute -left-6 top-1/2 hidden h-16 w-[2px] -translate-y-1/2 -rotate-12 bg-[#93a6c9] lg:block" />
-                    <div className="pointer-events-none absolute -right-6 top-1/2 hidden h-16 w-[2px] -translate-y-1/2 rotate-12 bg-[#93a6c9] lg:block" />
-                    <FunnelLayer {...layer} />
-                  </div>
-                );
-              }
-              return <FunnelLayer key={layer.id} {...layer} />;
-            })}
+            {funnelLayers.map((layer) => (
+              <FunnelLayer key={layer.id} {...layer} />
+            ))}
           </div>
 
           {/* Right Column */}
