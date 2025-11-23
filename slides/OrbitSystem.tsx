@@ -78,7 +78,7 @@ export const OrbitSystem: React.FC = () => {
       </div>
 
       {/* Sub-navigation for the orbit system */}
-      <div className="flex gap-2 p-1 bg-white/5 backdrop-blur-sm rounded-full mb-[53px] z-30 flex-wrap justify-center relative z-10">
+      <div className="flex gap-2 p-1 bg-white/5 backdrop-blur-sm rounded-full mb-[27px] z-30 flex-wrap justify-center relative z-10">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -93,7 +93,7 @@ export const OrbitSystem: React.FC = () => {
       </div>
 
       {/* Orbit Visualization */}
-      <div className="flex-1 w-full relative pt-8 z-10">
+      <div className="flex-1 w-full relative pt-4 z-10">
          <OrbitDiagram 
             key={activeTab} // Force re-render on tab change for animation
             center={currentData.center} 
