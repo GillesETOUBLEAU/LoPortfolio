@@ -147,7 +147,8 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const isPorscheCarreraGT = node.label === 'Porsche Carrera GT' && node.subLabel === 'World Premiere Le Louvre';
           const isDucatiXDiavelPress = node.label === 'Ducati X DIAVEL' && node.subLabel === '2nd Year - Paris at Dawn movie';
           const isPorscheClubs50Year = node.label === 'Porsche Clubs 50 year' && node.subLabel === 'Le Mans Pit Lane Diner';
-          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness || isDucatiScramblerCustomFlatTrack || isNewPorsche911 || isPorscheCarreraGT || isDucatiXDiavelPress || isPorscheClubs50Year;
+          const isAlpesAventureMotoFestival = node.label === 'Alpes Aventure Moto Festival' && node.subLabel === 'Ride with Antoine MEO';
+          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness || isDucatiScramblerCustomFlatTrack || isNewPorsche911 || isPorscheCarreraGT || isDucatiXDiavelPress || isPorscheClubs50Year || isAlpesAventureMotoFestival;
           
           const handleClick = () => {
             if (!onNavigateToDetail || !currentSlideId) return;
@@ -172,6 +173,8 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
               onNavigateToDetail('ducati-x-diavel-press', currentSlideId);
             } else if (isPorscheClubs50Year) {
               onNavigateToDetail('porsche-clubs-50-year', currentSlideId);
+            } else if (isAlpesAventureMotoFestival) {
+              onNavigateToDetail('alpes-aventure-moto-festival', currentSlideId);
             }
           };
           
