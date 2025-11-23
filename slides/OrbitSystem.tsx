@@ -4,15 +4,14 @@ import { NavItem, OrbitCenterData, OrbitNodeData } from '../types';
 
 const ecosystemData = {
   product: {
-    center: { label: 'PRODUCT', subLabel: 'Lifecycle Management / Extend Target' },
+    center: { label: 'PRODUCT', subLabel: 'Range extension, New Targets' },
     nodes: [
       { id: '1', label: 'Porsche Panamera', position: 'top' },
-      { id: '2', label: 'MTS V4', position: 'right' },
-      { id: '3', label: 'Monster', position: 'bottom' },
-      { id: '4', label: 'Scrambler', subLabel: 'Awareness', position: 'left' },
-      { id: '5', label: 'New 911', subLabel: '997 Type', position: 'top-left' },
-      { id: '6', label: 'Phygital', position: 'top-right' },
-      { id: '7', label: 'X Diavel', position: 'bottom-right' },
+      { id: '2', label: 'Ducati Multistrada V4', position: 'top-right' },
+      { id: '3', label: 'Ducati X Diavel', position: 'bottom-right' },
+      { id: '4', label: 'Ducati Monster', position: 'bottom' },
+      { id: '5', label: 'Scrambler', subLabel: 'Awareness', position: 'bottom-left' },
+      { id: '6', label: 'New 911', subLabel: '997 Type', position: 'top-left' },
     ] as OrbitNodeData[]
   },
   crm: {
@@ -98,7 +97,6 @@ export const OrbitSystem: React.FC = () => {
             key={activeTab} // Force re-render on tab change for animation
             center={currentData.center} 
             nodes={currentData.nodes} 
-            title={tabs.find(t => t.id === activeTab)?.label}
         />
       </div>
     </div>
