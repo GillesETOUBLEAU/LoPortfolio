@@ -22,13 +22,27 @@ export const Experience: React.FC = () => {
 
         {/* Center Gauge */}
         <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0 order-1 md:order-2">
-            <svg viewBox="0 0 100 100" className="w-full h-full rotate-[-90deg]">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
                 {/* Background Ring */}
                 <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
-                {/* Porsche Segment (Black/Dark) */}
-                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#1e293b" strokeWidth="10" strokeDasharray="125 251" strokeDashoffset="0" className="drop-shadow-lg" />
-                {/* Ducati Segment (Red) */}
-                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#ef4444" strokeWidth="10" strokeDasharray="125 251" strokeDashoffset="-125" className="drop-shadow-lg" />
+                {/* Ducati Segment (Red) - 1/3 starting from 6 o'clock */}
+                <path
+                    d="M 50 90 A 40 40 0 0 0 84.64 30"
+                    fill="transparent"
+                    stroke="#ef4444"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    className="drop-shadow-lg"
+                />
+                {/* Porsche Segment (Dark) - 2/3 finishing the circle */}
+                <path
+                    d="M 84.64 30 A 40 40 0 1 0 50 90"
+                    fill="transparent"
+                    stroke="#1e293b"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    className="drop-shadow-lg"
+                />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
                 <div className="bg-white/10 backdrop-blur-md rounded-full w-48 h-48 flex flex-col items-center justify-center border border-white/20">
