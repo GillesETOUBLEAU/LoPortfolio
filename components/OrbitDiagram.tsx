@@ -30,6 +30,9 @@ const getPositionStyle = (position: string, radius: number = 42): React.CSSPrope
     'bottom-right-mid-5': 144,
     'bottom-left-mid-5': 216,
     'top-left-mid-5': 288,
+    // 3-card evenly spaced positions (360/3 = 120° intervals) - avoiding bottom
+    'top-right-mid-3': 120,
+    'top-left-mid-3': 240,
     // Fallback positions for other tabs
     'right': 90,
     'left': 270,
@@ -125,7 +128,8 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
             'top', 'bottom',
             'top-right-mid-7', 'bottom-right-mid-7', 'bottom-right-mid-7-2',
             'bottom-left-mid-7', 'bottom-left-mid-7-2', 'top-left-mid-7',
-            'top-right-mid-5', 'bottom-right-mid-5', 'bottom-left-mid-5', 'top-left-mid-5'
+            'top-right-mid-5', 'bottom-right-mid-5', 'bottom-left-mid-5', 'top-left-mid-5',
+            'top-right-mid-3', 'top-left-mid-3'
           ].includes(node.position);
           const style = useInlineStyle ? getPositionStyle(node.position) : undefined;
           const className = useInlineStyle ? 'absolute w-40 z-20' : `absolute ${positionClasses[node.position]} w-40 z-20`;

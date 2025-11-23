@@ -36,14 +36,11 @@ const ecosystemData = {
     ] as OrbitNodeData[]
   },
   dealer: {
-    center: { label: 'DEALER MARKETING', subLabel: 'Guidelines' },
+    center: { label: 'DEALER MARKETING MANAGEMENT' },
     nodes: [
       { id: '1', label: 'CRM Salesforce', position: 'top' },
-      { id: '2', label: 'Local Marketing Plan', position: 'right' },
-      { id: '3', label: 'Desert X', position: 'bottom-right' },
-      { id: '4', label: 'Lead Management', position: 'bottom-left' },
-      { id: '5', label: 'Guidelines', position: 'left' },
-      { id: '6', label: 'Dealer Marketing', subLabel: 'Worldwide Guidelines', position: 'bottom-right' }, // Adjusted position for visual balance
+      { id: '2', label: 'Local Marketing Plan', subLabel: 'west europe', position: 'top-right-mid-3' },
+      { id: '3', label: 'Dealer Marketing', subLabel: 'Ducati Desert X - Worldwide launch in the dealerships', position: 'top-left-mid-3' },
     ] as OrbitNodeData[]
   }
 };
