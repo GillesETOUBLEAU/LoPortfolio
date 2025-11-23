@@ -54,21 +54,33 @@ export const TableBridge: React.FC = () => {
              
              <h3 className="text-xl font-bold mb-6 text-white/90 pb-2 border-b border-white/20">Relevant Experience</h3>
              <ul className="space-y-6">
-               <li className="group">
-                 <p className="font-semibold text-white/90">Award-winning earned media campaigns</p>
-                 <p className="text-sm text-white/60">at Porsche / Record Monster on track</p>
+               <li className="flex items-start gap-3 group">
+                 <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p className="font-semibold text-white/90">Award-winning earned media campaigns</p>
+                   <p className="text-sm text-white/60">at Porsche / Record Monster on track</p>
+                 </div>
                </li>
-               <li className="group">
-                 <p className="font-semibold text-white/90">Lifestyle storytelling & repositioning</p>
-                 <p className="text-sm text-white/60">at Ducati</p>
+               <li className="flex items-start gap-3 group">
+                 <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p className="font-semibold text-white/90">Lifestyle storytelling & repositioning</p>
+                   <p className="text-sm text-white/60">at Ducati</p>
+                 </div>
                </li>
-               <li className="group">
-                 <p className="font-semibold text-white/90">Porsche Driving School</p>
-                 <p className="text-sm text-white/60">Test ride strategy</p>
+               <li className="flex items-start gap-3 group">
+                 <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p className="font-semibold text-white/90">Porsche Driving School</p>
+                   <p className="text-sm text-white/60">Test ride strategy</p>
+                 </div>
                </li>
-               <li className="group">
-                 <p className="font-semibold text-white/90">Story Sharing</p>
-                 <p className="text-sm text-white/60">Community & phygital events</p>
+               <li className="flex items-start gap-3 group">
+                 <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p className="font-semibold text-white/90">Story Sharing</p>
+                   <p className="text-sm text-white/60">Community & phygital events</p>
+                 </div>
                </li>
              </ul>
           </div>
