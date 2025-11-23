@@ -108,15 +108,18 @@ export const Funnel: React.FC = () => {
       <div className="relative z-10 flex w-full max-w-6xl flex-col gap-10">
         {/* Top Inputs */}
         <div className="flex justify-center">
-          <div className="flex w-full max-w-3xl flex-wrap items-start justify-between gap-8">
+          <div className="flex w-full max-w-4xl flex-wrap items-start justify-between gap-6">
             {topInputs.map((item) => (
-              <div key={item.title} className="flex flex-col items-center text-center">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em]">
+              <div
+                key={item.title}
+                className="flex flex-col items-center rounded-full bg-white/90 px-6 py-4 text-center text-[#122f5d] shadow-lg shadow-black/10 backdrop-blur"
+              >
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0d2042]">
                   {item.title}
                 </span>
-                <span className="text-[11px] text-[#3f536f]">{item.subtitle}</span>
-                <div className="mt-4 h-10 w-px bg-[#0f3973]" />
-                <div className="h-0 w-0 border-x-4 border-t-6 border-x-transparent border-t-[#0f3973]" />
+                <span className="text-[11px] text-[#3f4a61]">{item.subtitle}</span>
+                <div className="mt-4 h-10 w-px bg-[#0d2042]" />
+                <div className="h-0 w-0 border-x-4 border-t-6 border-x-transparent border-t-[#0d2042]" />
               </div>
             ))}
           </div>
