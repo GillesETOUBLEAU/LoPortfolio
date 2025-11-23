@@ -95,8 +95,16 @@ const FunnelLayer: React.FC<LayerConfig> = ({
 
 export const Funnel: React.FC = () => {
   return (
-    <div className="relative flex h-full w-full items-center justify-center bg-white px-4 py-10 text-[#0c2244]">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-white" />
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-white px-4 py-10 text-[#0c2244]">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918125246-ho5xik.jpg"
+          alt="Funnel background"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
       <div className="relative z-10 flex w-full max-w-6xl flex-col gap-10">
         {/* Top Inputs */}
         <div className="flex justify-center">
