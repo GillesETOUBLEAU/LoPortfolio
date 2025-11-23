@@ -33,9 +33,9 @@ const ecosystemData = {
       { id: '2', label: 'X Diavel', position: 'right' },
       { id: '3', label: 'Unforgettable Invitation', position: 'bottom' },
       { id: '4', label: 'Scrambler', subLabel: 'Flat Track', position: 'left' },
-      { id: '5', label: 'Intern. Premiere', subLabel: 'Louvre', position: 'top-right' },
+      { id: '5', label: 'International Premiere', subLabel: 'Louvre', position: 'top-right' },
       { id: '6', label: 'Crossing Paris at Dawn', position: 'right' }, 
-      { id: '7', label: 'Alpes Moto Aventure', position: 'left' }, 
+      { id: '7', label: 'Alps Motorcycle Adventure', position: 'left' }, 
     ] as OrbitNodeData[]
   },
   dealer: {
@@ -46,7 +46,7 @@ const ecosystemData = {
       { id: '3', label: 'Desert X', position: 'bottom-right' },
       { id: '4', label: 'Lead Management', position: 'bottom-left' },
       { id: '5', label: 'Guidelines', position: 'left' },
-      { id: '6', label: 'Dealer MKG', subLabel: 'Worldwide Guidelines', position: 'bottom-right' }, // Adjusted position for visual balance
+      { id: '6', label: 'Dealer Marketing', subLabel: 'Worldwide Guidelines', position: 'bottom-right' }, // Adjusted position for visual balance
     ] as OrbitNodeData[]
   }
 };

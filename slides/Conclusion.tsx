@@ -20,7 +20,7 @@ export const Conclusion: React.FC = () => {
         
         <div className="space-y-6 text-lg md:text-2xl font-light text-white/90 mb-12">
           <p>Connect the power of the dream with the promise of electrification.</p>
-          <p>To make Zero Motorcycles visible, credible, and desirable worldwide.</p>
+          <p>To make ZERO Motorcycles visible, credible, and desirable worldwide.</p>
         </div>
 
         <div className="inline-block border-t border-white/30 pt-8 mt-8">

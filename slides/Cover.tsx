@@ -15,7 +15,7 @@ export const Cover: React.FC = () => {
              <h1 className="text-[120px] md:text-[200px] font-bold text-white/5 leading-none select-none absolute z-0">BOOK</h1>
              <div className="relative z-10 backdrop-blur-sm bg-white/5 p-8 rounded-xl-custom border border-white/10">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-2">Creative Marketing Book</h2>
-                <p className="text-xl md:text-2xl text-white/70 font-light">From storytelling to storysharing</p>
+                <p className="text-xl md:text-2xl text-white/70 font-light">From storytelling to story sharing</p>
              </div>
         </div>
 

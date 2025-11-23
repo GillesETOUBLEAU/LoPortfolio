@@ -29,7 +29,7 @@ export const Roadmap: React.FC = () => {
     <div className="h-full w-full flex flex-col justify-center items-center p-grid-4">
       <div className="max-w-4xl w-full">
         <h2 className="text-3xl md:text-5xl font-bold mb-2">Roadmap for ZERO</h2>
-        <p className="text-lg text-white/60 mb-8 md:mb-12">Accelerating Zero’s European growth.</p>
+        <p className="text-lg text-white/60 mb-8 md:mb-12">Accelerating ZERO's European growth.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
           {/* Central Line for visual continuity */}

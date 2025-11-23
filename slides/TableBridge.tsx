@@ -14,7 +14,7 @@ export const TableBridge: React.FC = () => {
 
           {/* Column 1 */}
           <div className="p-grid-4 border-b md:border-b-0 md:border-r border-white/10">
-            <h3 className="text-xl font-bold mb-6 text-white/90 pb-2 border-b border-white/20">Zero's Needs</h3>
+            <h3 className="text-xl font-bold mb-6 text-white/90 pb-2 border-b border-white/20">ZERO's Needs</h3>
             <ul className="space-y-6">
               <li className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-blue-400"></div>
@@ -44,7 +44,7 @@ export const TableBridge: React.FC = () => {
              <ul className="space-y-6">
                <li className="group">
                  <p className="font-semibold text-white/90">Award-winning earned media campaigns</p>
-                 <p className="text-sm text-white/60">at Porsche / Record Monster sur piste</p>
+                 <p className="text-sm text-white/60">at Porsche / Record Monster on track</p>
                </li>
                <li className="group">
                  <p className="font-semibold text-white/90">Lifestyle storytelling & repositioning</p>
@@ -55,7 +55,7 @@ export const TableBridge: React.FC = () => {
                  <p className="text-sm text-white/60">Test ride strategy</p>
                </li>
                <li className="group">
-                 <p className="font-semibold text-white/90">Storysharing</p>
+                 <p className="font-semibold text-white/90">Story Sharing</p>
                  <p className="text-sm text-white/60">Community & phygital events</p>
                </li>
              </ul>

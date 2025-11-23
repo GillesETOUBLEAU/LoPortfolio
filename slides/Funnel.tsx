@@ -47,7 +47,7 @@ export const Funnel: React.FC = () => {
                 <div className="w-32 text-xs font-bold text-white/50 text-right pr-4 hidden md:block">DESIRABILITY</div>
                 <div className="flex-1 text-center">
                     <div className="font-bold text-xl text-blue-200 tracking-[0.2em] mb-1">EXPERIENCES</div>
-                    <div className="text-xs italic text-blue-100/70">Enrich client lives / Ride <br/> The test ride as a conversion tool</div>
+                    <div className="text-xs italic text-blue-100/70">Enrich clients' lives / Ride <br/> The test ride as a conversion tool</div>
                 </div>
                 <div className="w-32 text-xs text-white/50 pl-4 hidden md:block">Superiority</div>
             </GlassCard>
