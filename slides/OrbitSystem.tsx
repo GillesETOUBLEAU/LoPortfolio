@@ -15,14 +15,14 @@ const ecosystemData = {
     ] as OrbitNodeData[]
   },
   crm: {
-    center: { label: 'WEB UX', subLabel: 'Ducati France / Benchmark' },
+    center: { label: 'WEB UX', subLabel: 'Ducati France international benchmark' },
     nodes: [
       { id: '1', label: 'Salesforce', subLabel: 'WW CRM', position: 'top' },
-      { id: '2', label: 'Lead Management', subLabel: 'Web', position: 'right' },
-      { id: '3', label: 'Call Center', position: 'bottom' },
-      { id: '4', label: 'Test Rides', subLabel: 'Dealer Shop / Events', position: 'left' },
-      { id: '5', label: 'Conversion', subLabel: 'Test Ride Sales', position: 'top-left' },
-      { id: '6', label: 'Conversion', subLabel: 'Leads Test Ride', position: 'bottom-left' },
+      { id: '2', label: 'Lead Management', subLabel: 'Web', position: 'top-right-mid' },
+      { id: '3', label: 'Call Center', position: 'bottom-right-mid' },
+      { id: '4', label: 'Test Rides', subLabel: 'Dealer Shop / Events', position: 'bottom' },
+      { id: '5', label: 'Conversion', subLabel: 'Test Ride Sales', position: 'bottom-left-mid' },
+      { id: '6', label: 'Conversion', subLabel: 'Leads Test Ride', position: 'top-left-mid' },
     ] as OrbitNodeData[]
   },
   press: {
@@ -55,7 +55,7 @@ export const OrbitSystem: React.FC = () => {
 
   const tabs = [
     { id: 'product', label: 'Product Lifecycle' },
-    { id: 'crm', label: 'Web / CRM' },
+    { id: 'crm', label: 'Web / UX' },
     { id: 'press', label: 'Press & Activation' },
     { id: 'dealer', label: 'Dealer Marketing' },
   ];
