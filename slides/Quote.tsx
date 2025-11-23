@@ -2,8 +2,20 @@ import React from 'react';
 
 export const Quote: React.FC = () => {
   return (
-    <div className="h-full w-full flex items-center justify-center p-grid-4 md:p-grid-5">
-      <div className="max-w-4xl relative">
+    <div className="h-full w-full flex items-center justify-center p-grid-4 md:p-grid-5 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763917542140-1d8hs.jpeg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Blue Filter Overlay - same as Cover slide */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
+
+      <div className="max-w-4xl relative z-10">
         <span className="absolute -top-12 -left-12 text-9xl text-white/10 font-serif">“</span>
         
         <blockquote className="text-xl md:text-3xl font-light leading-relaxed text-white/90">

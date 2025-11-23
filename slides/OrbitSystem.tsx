@@ -64,9 +64,21 @@ export const OrbitSystem: React.FC = () => {
   const currentData = ecosystemData[activeTab];
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center pt-grid-5">
+    <div className="h-full w-full flex flex-col items-center justify-center pt-grid-5 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918540624-ju35cr.jpeg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Blue Filter Overlay - same as other slides */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
+
       {/* Sub-navigation for the orbit system */}
-      <div className="flex gap-2 p-1 bg-white/5 backdrop-blur-sm rounded-full mb-20 z-30 flex-wrap justify-center">
+      <div className="flex gap-2 p-1 bg-white/5 backdrop-blur-sm rounded-full mb-20 z-30 flex-wrap justify-center relative z-10">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -81,7 +93,7 @@ export const OrbitSystem: React.FC = () => {
       </div>
 
       {/* Orbit Visualization */}
-      <div className="flex-1 w-full relative pt-8">
+      <div className="flex-1 w-full relative pt-8 z-10">
          <OrbitDiagram 
             key={activeTab} // Force re-render on tab change for animation
             center={currentData.center} 

@@ -26,8 +26,20 @@ export const Roadmap: React.FC = () => {
   ];
 
   return (
-    <div className="h-full w-full flex flex-col justify-center items-center p-grid-4">
-      <div className="max-w-4xl w-full">
+    <div className="h-full w-full flex flex-col justify-center items-center p-grid-4 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763919095864-w53ln.jpg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Blue Filter Overlay - same as other slides */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
+
+      <div className="max-w-4xl w-full relative z-10">
         <h2 className="text-3xl md:text-5xl font-bold mb-2">Roadmap for ZERO</h2>
         <p className="text-lg text-white/60 mb-8 md:mb-12">Accelerating ZERO's European growth.</p>
 

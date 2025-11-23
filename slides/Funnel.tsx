@@ -3,10 +3,21 @@ import { GlassCard } from '../components/GlassCard';
 
 export const Funnel: React.FC = () => {
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center p-grid-4">
+    <div className="h-full w-full flex flex-col items-center justify-center p-grid-4 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918125246-ho5xik.jpg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Blue Filter Overlay - same as other slides */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
       
       {/* Top Inputs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl mb-8 relative z-10">
         {[
           { title: "Targeting", sub: "Segmentation" },
           { title: "Press/Influencers", sub: "Activations" },
@@ -23,7 +34,7 @@ export const Funnel: React.FC = () => {
       </div>
 
       {/* The Funnel Stack */}
-      <div className="w-full max-w-3xl flex flex-col gap-2 relative">
+      <div className="w-full max-w-3xl flex flex-col gap-2 relative z-10">
          
          {/* Layer 1: Vision */}
          <GlassCard className="w-full p-4 flex justify-between items-center bg-white/20">

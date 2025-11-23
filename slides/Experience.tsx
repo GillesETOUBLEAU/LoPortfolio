@@ -3,8 +3,20 @@ import { GlassCard } from '../components/GlassCard';
 
 export const Experience: React.FC = () => {
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center p-grid-2">
-      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-4 gap-grid-2 mb-grid-4 text-center">
+    <div className="h-full w-full flex flex-col items-center justify-center p-grid-2 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763917826148-oxy7iv.jpg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Blue Filter Overlay - same as Cover and Quote slides */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
+
+      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-4 gap-grid-2 mb-grid-4 text-center relative z-10">
         {['Dual Sector Expertise', 'International Groups', 'Iconic Brands', '20 Years Experience'].map((item) => (
             <GlassCard key={item} intensity="low" className="py-3 px-2">
                 <span className="text-xs md:text-sm font-bold uppercase tracking-wider">{item}</span>
@@ -12,7 +24,7 @@ export const Experience: React.FC = () => {
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row items-center gap-grid-4 md:gap-grid-5 w-full max-w-5xl">
+      <div className="flex flex-col md:flex-row items-center gap-grid-4 md:gap-grid-5 w-full max-w-5xl relative z-10">
         
         {/* Porsche Side */}
         <div className="flex-1 text-right space-y-4 order-2 md:order-1">

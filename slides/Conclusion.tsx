@@ -3,14 +3,16 @@ import React from 'react';
 export const Conclusion: React.FC = () => {
   return (
     <div className="h-full w-full relative flex flex-col justify-center items-center overflow-hidden">
-      {/* Background Image Placeholder using Picsum */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/1920/1080?grayscale&blur=2" 
-          alt="Open Road" 
-          className="w-full h-full object-cover opacity-40 mix-blend-overlay"
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763919400415-zz2k8.jpeg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent" />
+        {/* Blue Filter Overlay - same as other slides */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
       </div>
 
       <div className="z-10 max-w-4xl p-grid-4 text-center">

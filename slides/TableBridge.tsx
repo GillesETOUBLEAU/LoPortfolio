@@ -3,10 +3,22 @@ import { GlassCard } from '../components/GlassCard';
 
 export const TableBridge: React.FC = () => {
   return (
-    <div className="h-full w-full flex flex-col justify-center items-center p-grid-4">
-      <h2 className="text-3xl md:text-4xl font-bold mb-grid-4 text-center">Bridges from Experience to ZERO</h2>
+    <div className="h-full w-full flex flex-col justify-center items-center p-grid-4 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918893149-xanne.jpg" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Blue Filter Overlay - same as other slides */}
+        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
+      </div>
+
+      <h2 className="text-3xl md:text-4xl font-bold mb-grid-4 text-center relative z-10">Bridges from Experience to ZERO</h2>
       
-      <GlassCard className="w-full max-w-5xl overflow-hidden p-0">
+      <GlassCard className="w-full max-w-5xl overflow-hidden p-0 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           
           {/* Header Mobile Only */}
@@ -64,7 +76,7 @@ export const TableBridge: React.FC = () => {
       </GlassCard>
 
       {/* Visual Flow Indicator */}
-      <div className="mt-8 flex items-center gap-4 text-white/50 text-sm font-medium uppercase tracking-widest">
+      <div className="mt-8 flex items-center gap-4 text-white/50 text-sm font-medium uppercase tracking-widest relative z-10">
         <span>Porsche</span>
         <span className="text-white">→</span>
         <span>Ducati</span>
