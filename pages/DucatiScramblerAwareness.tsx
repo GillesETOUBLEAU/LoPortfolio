@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-interface DucatiMonsterProps {
+interface DucatiScramblerAwarenessProps {
   onBack: () => void;
 }
 
-export const DucatiMonster: React.FC<DucatiMonsterProps> = ({ onBack }) => {
+export const DucatiScramblerAwareness: React.FC<DucatiScramblerAwarenessProps> = ({ onBack }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const images = [
-    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928274764-bq2jz.png',
-    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928275169-51b39g.png',
+    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928229865-9d2tvp.png',
+    'https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763928229476-6sv91g.png',
   ];
 
   const handleImageClick = (imageUrl: string) => {
@@ -19,6 +19,7 @@ export const DucatiMonster: React.FC<DucatiMonsterProps> = ({ onBack }) => {
   const closeModal = () => {
     setSelectedImage(null);
   };
+
   return (
     <div className="h-full w-full flex flex-col items-center justify-center p-grid-4 relative overflow-hidden">
       {/* Background Image */}
@@ -55,24 +56,7 @@ export const DucatiMonster: React.FC<DucatiMonsterProps> = ({ onBack }) => {
       </button>
 
       {/* Content Container */}
-      <div className="w-full max-w-7xl mx-auto relative z-10 overflow-y-auto py-20 space-y-grid-6">
-        {/* Video Container */}
-        <div className="w-full max-w-5xl mx-auto flex items-center justify-center">
-          <div className="w-full aspect-video rounded-xl-custom overflow-hidden shadow-2xl">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/X7H3eQBNBEM?si=BrWP-ZDCrlg0uERf"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
-        </div>
-
+      <div className="w-full max-w-7xl mx-auto relative z-10 overflow-y-auto py-20">
         {/* Images Section - 2 images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-grid-2">
           {images.map((imageUrl, index) => (
@@ -83,7 +67,7 @@ export const DucatiMonster: React.FC<DucatiMonsterProps> = ({ onBack }) => {
             >
               <img
                 src={imageUrl}
-                alt={`Ducati Monster ${index + 1}`}
+                alt={`Ducati Scrambler Awareness ${index + 1}`}
                 className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">

@@ -141,7 +141,8 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const isDucatiMultistradaV4 = node.label === 'Ducati Multistrada V4';
           const isDucatiXDiavel = node.label === 'Ducati X Diavel';
           const isDucatiMonster = node.label === 'Ducati Monster';
-          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster;
+          const isDucatiScramblerAwareness = node.label === 'Ducati Scrambler' && node.subLabel === 'Awareness';
+          const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness;
           
           const handleClick = () => {
             if (!onNavigateToDetail || !currentSlideId) return;
@@ -154,6 +155,8 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
               onNavigateToDetail('ducati-x-diavel', currentSlideId);
             } else if (isDucatiMonster) {
               onNavigateToDetail('ducati-monster', currentSlideId);
+            } else if (isDucatiScramblerAwareness) {
+              onNavigateToDetail('ducati-scrambler-awareness', currentSlideId);
             }
           };
           
