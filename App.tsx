@@ -4,7 +4,6 @@ import { Quote } from './slides/Quote';
 import { Experience } from './slides/Experience';
 import { Funnel } from './slides/Funnel';
 import { OrbitSystem } from './slides/OrbitSystem';
-import { TableBridge } from './slides/TableBridge';
 import { Roadmap } from './slides/Roadmap';
 import { Conclusion } from './slides/Conclusion';
 import { Navigation } from './components/Navigation';
@@ -17,7 +16,6 @@ const slides = [
   { id: 'expertise', component: Experience, label: 'Expertise' },
   { id: 'funnel', component: Funnel, label: 'Funnel' },
   { id: 'ecosystem', component: OrbitSystem, label: 'Ecosystem' },
-  { id: 'bridge', component: TableBridge, label: 'Bridge' },
   { id: 'roadmap', component: Roadmap, label: 'Roadmap' },
   { id: 'conclusion', component: Conclusion, label: 'Conclusion' },
 ];
