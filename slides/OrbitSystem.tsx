@@ -28,13 +28,11 @@ const ecosystemData = {
   press: {
     center: { label: 'PRESS / MEDIA', subLabel: '& Influencers Activations' },
     nodes: [
-      { id: '1', label: 'Carrera GT', position: 'top' },
-      { id: '2', label: 'X Diavel', position: 'top-right-mid-7' },
-      { id: '3', label: 'International Premiere', subLabel: 'Louvre', position: 'bottom-right-mid-7' },
-      { id: '4', label: 'Unforgettable Invitation', position: 'bottom-right-mid-7-2' },
-      { id: '5', label: 'Scrambler', subLabel: 'Flat Track', position: 'bottom-left-mid-7' },
-      { id: '6', label: 'Crossing Paris at Dawn', position: 'bottom-left-mid-7-2' },
-      { id: '7', label: 'Alps Motorcycle Adventure', position: 'top-left-mid-7' }, 
+      { id: '1', label: 'Porsche Carrera GT', subLabel: 'World Premiere Le Louvre', position: 'top' },
+      { id: '2', label: 'Ducati X DIAVEL', subLabel: '2nd Year - Paris at Dawn movie', position: 'top-right-mid-5' },
+      { id: '3', label: 'Porsche Clubs 50 year', subLabel: 'Le Mans Pit Lane Diner', position: 'bottom-right-mid-5' },
+      { id: '4', label: 'Ducati Scrambler', subLabel: 'Custom Flat Track', position: 'bottom-left-mid-5' },
+      { id: '5', label: 'Alpes Aventure Moto Festival', subLabel: 'Ride with Antoine MEO', position: 'top-left-mid-5' }, 
     ] as OrbitNodeData[]
   },
   dealer: {
