@@ -106,7 +106,7 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
               >
                 <svg width="12" height="12" viewBox="0 0 12 12">
                   <path
-                    d="M 0 6 L 10 2 L 10 10 Z"
+                    d="M 10 6 L 0 2 L 0 10 Z"
                     fill="rgba(255, 255, 255, 0.6)"
                   />
                 </svg>
