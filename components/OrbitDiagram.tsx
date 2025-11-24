@@ -6,8 +6,9 @@ interface OrbitDiagramProps {
   center: OrbitCenterData;
   nodes: OrbitNodeData[];
   title?: string;
-  onNavigateToDetail?: (pageId: string, fromSlide: string) => void;
+  onNavigateToDetail?: (pageId: string, fromSlide: string, fromTab: 'product' | 'crm' | 'press' | 'dealer') => void;
   currentSlideId?: string;
+  activeTab?: 'product' | 'crm' | 'press' | 'dealer';
 }
 
 // Helper function to calculate position for evenly spaced cards around a circle
@@ -74,7 +75,7 @@ const positionClasses = {
   'top-left-mid': '',
 };
 
-export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title, onNavigateToDetail, currentSlideId }) => {
+export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title, onNavigateToDetail, currentSlideId, activeTab }) => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-grid-4">
       {title && <h3 className="text-xl font-bold mb-12 text-center uppercase tracking-widest text-white/90">{title}</h3>}
@@ -153,28 +154,30 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           const handleClick = () => {
             if (!onNavigateToDetail || !currentSlideId) return;
             
+            const tab = activeTab ?? 'product';
+            
             if (isPorschePanamera) {
-              onNavigateToDetail('porsche-panamera', currentSlideId);
+              onNavigateToDetail('porsche-panamera', currentSlideId, tab);
             } else if (isDucatiMultistradaV4) {
-              onNavigateToDetail('ducati-multistrada-v4', currentSlideId);
+              onNavigateToDetail('ducati-multistrada-v4', currentSlideId, tab);
             } else if (isDucatiXDiavel) {
-              onNavigateToDetail('ducati-x-diavel', currentSlideId);
+              onNavigateToDetail('ducati-x-diavel', currentSlideId, tab);
             } else if (isDucatiMonster) {
-              onNavigateToDetail('ducati-monster', currentSlideId);
+              onNavigateToDetail('ducati-monster', currentSlideId, tab);
             } else if (isDucatiScramblerAwareness) {
-              onNavigateToDetail('ducati-scrambler-awareness', currentSlideId);
+              onNavigateToDetail('ducati-scrambler-awareness', currentSlideId, tab);
             } else if (isDucatiScramblerCustomFlatTrack) {
-              onNavigateToDetail('ducati-scrambler-custom-flat-track', currentSlideId);
+              onNavigateToDetail('ducati-scrambler-custom-flat-track', currentSlideId, tab);
             } else if (isNewPorsche911) {
-              onNavigateToDetail('new-porsche-911', currentSlideId);
+              onNavigateToDetail('new-porsche-911', currentSlideId, tab);
             } else if (isPorscheCarreraGT) {
-              onNavigateToDetail('porsche-carrera-gt', currentSlideId);
+              onNavigateToDetail('porsche-carrera-gt', currentSlideId, tab);
             } else if (isDucatiXDiavelPress) {
-              onNavigateToDetail('ducati-x-diavel-press', currentSlideId);
+              onNavigateToDetail('ducati-x-diavel-press', currentSlideId, tab);
             } else if (isPorscheClubs50Year) {
-              onNavigateToDetail('porsche-clubs-50-year', currentSlideId);
+              onNavigateToDetail('porsche-clubs-50-year', currentSlideId, tab);
             } else if (isAlpesAventureMotoFestival) {
-              onNavigateToDetail('alpes-aventure-moto-festival', currentSlideId);
+              onNavigateToDetail('alpes-aventure-moto-festival', currentSlideId, tab);
             }
           };
           

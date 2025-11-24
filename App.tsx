@@ -36,6 +36,7 @@ const App: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(slides[0].id);
   const [currentPage, setCurrentPage] = useState<'slides' | 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt' | 'ducati-x-diavel-press' | 'porsche-clubs-50-year' | 'ducati-scrambler-custom-flat-track' | 'alpes-aventure-moto-festival'>('slides');
   const [returnToSlide, setReturnToSlide] = useState<string>('ecosystem');
+  const [activeTab, setActiveTab] = useState<'product' | 'crm' | 'press' | 'dealer'>('product');
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
@@ -56,8 +57,9 @@ const App: React.FC = () => {
     }
   };
 
-  const navigateToDetailPage = (pageId: string, fromSlide: string) => {
+  const navigateToDetailPage = (pageId: string, fromSlide: string, fromTab: 'product' | 'crm' | 'press' | 'dealer') => {
     setReturnToSlide(fromSlide);
+    setActiveTab(fromTab);
     setCurrentPage(pageId as 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt' | 'ducati-x-diavel-press' | 'porsche-clubs-50-year' | 'ducati-scrambler-custom-flat-track' | 'alpes-aventure-moto-festival');
   };
 
@@ -218,7 +220,15 @@ const App: React.FC = () => {
             className="w-full h-screen snap-start relative flex items-center justify-center"
           >
             <div className="w-full h-full relative z-10">
-              <slide.component onNavigateToDetail={navigateToDetailPage} />
+              {slide.id === 'ecosystem' ? (
+                <slide.component 
+                  onNavigateToDetail={navigateToDetailPage} 
+                  activeTab={activeTab}
+                  onTabChange={setActiveTab}
+                />
+              ) : (
+                <slide.component onNavigateToDetail={navigateToDetailPage} />
+              )}
             </div>
           </section>
         ))}

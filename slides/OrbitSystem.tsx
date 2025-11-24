@@ -46,11 +46,17 @@ const ecosystemData = {
 };
 
 interface OrbitSystemProps {
-  onNavigateToDetail?: (pageId: string, fromSlide: string) => void;
+  onNavigateToDetail?: (pageId: string, fromSlide: string, fromTab: 'product' | 'crm' | 'press' | 'dealer') => void;
+  activeTab?: 'product' | 'crm' | 'press' | 'dealer';
+  onTabChange?: (tab: 'product' | 'crm' | 'press' | 'dealer') => void;
 }
 
-export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail }) => {
-  const [activeTab, setActiveTab] = useState<'product' | 'crm' | 'press' | 'dealer'>('product');
+export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail, activeTab, onTabChange }) => {
+  const currentTab = activeTab ?? 'product';
+  
+  const handleTabChange = (tab: 'product' | 'crm' | 'press' | 'dealer') => {
+    onTabChange?.(tab);
+  };
 
   const tabs = [
     { id: 'product', label: 'Product Lifecycle' },
@@ -59,7 +65,7 @@ export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail }) 
     { id: 'dealer', label: 'Dealer Marketing' },
   ];
 
-  const currentData = ecosystemData[activeTab];
+  const currentData = ecosystemData[currentTab];
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-center pt-grid-5 relative overflow-hidden">
@@ -80,9 +86,9 @@ export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail }) 
         {tabs.map(tab => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
+            onClick={() => handleTabChange(tab.id as any)}
             className={`px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all ${
-              activeTab === tab.id ? 'bg-white text-slate-900 shadow-lg' : 'text-white/60 hover:text-white hover:bg-white/10'
+              currentTab === tab.id ? 'bg-white text-slate-900 shadow-lg' : 'text-white/60 hover:text-white hover:bg-white/10'
             }`}
           >
             {tab.label}
@@ -93,11 +99,12 @@ export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail }) 
       {/* Orbit Visualization */}
       <div className="flex-1 w-full relative pt-4 z-10">
          <OrbitDiagram 
-            key={activeTab} // Force re-render on tab change for animation
+            key={currentTab} // Force re-render on tab change for animation
             center={currentData.center} 
             nodes={currentData.nodes}
             onNavigateToDetail={onNavigateToDetail}
             currentSlideId="ecosystem"
+            activeTab={currentTab}
         />
       </div>
     </div>
