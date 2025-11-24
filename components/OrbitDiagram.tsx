@@ -140,13 +140,13 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
           // Check if this card should be clickable
           const isPorschePanamera = node.label === 'Porsche Panamera';
           const isDucatiMultistradaV4 = node.label === 'Ducati Multistrada V4';
-          const isDucatiXDiavel = node.label === 'Ducati X Diavel';
+          const isDucatiXDiavel = node.label === 'Ducati Diavel';
           const isDucatiMonster = node.label === 'Ducati Monster';
           const isDucatiScramblerAwareness = node.label === 'Ducati Scrambler' && node.subLabel === 'Awareness';
           const isDucatiScramblerCustomFlatTrack = node.label === 'Ducati Scrambler' && node.subLabel === 'Custom Flat Track';
           const isNewPorsche911 = node.label === 'New Porsche 911' && node.subLabel === '997 Type';
           const isPorscheCarreraGT = node.label === 'Porsche Carrera GT' && node.subLabel === 'World Premiere Le Louvre';
-          const isDucatiXDiavelPress = node.label === 'Ducati X DIAVEL' && node.subLabel === '2nd Year - Paris at Dawn movie';
+          const isDucatiXDiavelPress = node.label === 'Ducati DIAVEL' && node.subLabel === '2nd Year - Paris at Dawn movie';
           const isPorscheClubs50Year = node.label === 'Porsche Clubs 50 year' && node.subLabel === 'Le Mans Pit Lane Diner';
           const isAlpesAventureMotoFestival = node.label === 'Alpes Aventure Moto Festival' && node.subLabel === 'Ride with Antoine MEO';
           const isClickable = isPorschePanamera || isDucatiMultistradaV4 || isDucatiXDiavel || isDucatiMonster || isDucatiScramblerAwareness || isDucatiScramblerCustomFlatTrack || isNewPorsche911 || isPorscheCarreraGT || isDucatiXDiavelPress || isPorscheClubs50Year || isAlpesAventureMotoFestival;

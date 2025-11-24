@@ -61,7 +61,7 @@ export const DucatiXDiavel: React.FC<DucatiXDiavelProps> = ({ onBack }) => {
           >
             <img
               src={imageUrl}
-              alt="Ducati X Diavel"
+              alt="Ducati Diavel"
               className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">

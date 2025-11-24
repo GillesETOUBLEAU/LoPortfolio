@@ -8,7 +8,7 @@ const ecosystemData = {
     nodes: [
       { id: '1', label: 'Porsche Panamera', position: 'top' },
       { id: '2', label: 'Ducati Multistrada V4', position: 'top-right-mid' },
-      { id: '3', label: 'Ducati X Diavel', position: 'bottom-right-mid' },
+      { id: '3', label: 'Ducati Diavel', position: 'bottom-right-mid' },
       { id: '4', label: 'Ducati Monster', position: 'bottom' },
       { id: '5', label: 'Ducati Scrambler', subLabel: 'Awareness', position: 'bottom-left-mid' },
       { id: '6', label: 'New Porsche 911', subLabel: '997 Type', position: 'top-left-mid' },
@@ -29,7 +29,7 @@ const ecosystemData = {
     center: { label: 'PRESS / MEDIA', subLabel: '& Influencers Activations' },
     nodes: [
       { id: '1', label: 'Porsche Carrera GT', subLabel: 'World Premiere Le Louvre', position: 'top' },
-      { id: '2', label: 'Ducati X DIAVEL', subLabel: '2nd Year - Paris at Dawn movie', position: 'top-right-mid-5' },
+      { id: '2', label: 'Ducati DIAVEL', subLabel: '2nd Year - Paris at Dawn movie', position: 'top-right-mid-5' },
       { id: '3', label: 'Porsche Clubs 50 year', subLabel: 'Le Mans Pit Lane Diner', position: 'bottom-right-mid-5' },
       { id: '4', label: 'Ducati Scrambler', subLabel: 'Custom Flat Track', position: 'bottom-left-mid-5' },
       { id: '5', label: 'Alpes Aventure Moto Festival', subLabel: 'Ride with Antoine MEO', position: 'top-left-mid-5' }, 
