@@ -72,7 +72,7 @@ export const OrbitSystem: React.FC<OrbitSystemProps> = ({ onNavigateToDetail, ac
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918540624-ju35cr.jpeg" 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1764533003215-ok70lv.jpg" 
           alt="Background" 
           className="w-full h-full object-cover"
         />
