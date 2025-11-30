@@ -119,7 +119,7 @@ export const OrbitDiagram: React.FC<OrbitDiagramProps> = ({ center, nodes, title
         <div className="absolute inset-0 flex items-center justify-center">
           <GlassCard intensity="high" className="w-32 h-32 rounded-full flex flex-col items-center justify-center text-center p-3 z-10 border-white/30">
             <h4 className="font-bold text-base text-white">{center.label}</h4>
-            {center.subLabel && <p className="text-[10px] text-white/60 mt-1 uppercase tracking-wide leading-tight">{center.subLabel}</p>}
+            {center.subLabel && <p className="text-[10px] font-bold text-white mt-1 uppercase tracking-wide leading-tight">{center.subLabel}</p>}
           </GlassCard>
         </div>
 

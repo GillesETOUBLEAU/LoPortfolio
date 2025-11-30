@@ -5,7 +5,7 @@ export const Roadmap: React.FC = () => {
   const steps = [
     {
       title: "Clarify the positioning",
-      desc: "Combine technological and emotional leadership.",
+      desc: "by sharpening distinctiveness",
       icon: "🎯"
     },
     {

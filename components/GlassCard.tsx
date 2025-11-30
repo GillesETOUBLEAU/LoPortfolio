@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 interface GlassCardProps {
   children: ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   intensity?: 'low' | 'medium' | 'high';
   border?: boolean;
   onClick?: () => void;
@@ -11,6 +12,7 @@ interface GlassCardProps {
 export const GlassCard: React.FC<GlassCardProps> = ({ 
   children, 
   className = '', 
+  style,
   intensity = 'medium',
   border = true,
   onClick
@@ -22,6 +24,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   return (
     <div 
       className={`${bgOpacity} ${blur} ${borderColor} rounded-xl-custom shadow-2xl ${className}`}
+      style={style}
       onClick={onClick}
     >
       {children}

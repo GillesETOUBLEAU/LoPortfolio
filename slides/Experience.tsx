@@ -7,7 +7,7 @@ export const Experience: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763917826148-oxy7iv.jpg" 
+          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1764531070705-dajxaq.png" 
           alt="Background" 
           className="w-full h-full object-cover"
         />
@@ -49,11 +49,11 @@ export const Experience: React.FC = () => {
                     strokeLinecap="round"
                     className="drop-shadow-lg"
                 />
-                {/* Porsche Segment (Dark) - 2/3 finishing the circle */}
+                {/* Porsche Segment (White) - 2/3 finishing the circle */}
                 <path
                     d="M 15.36 30 A 40 40 0 1 1 50 90"
                     fill="transparent"
-                    stroke="#1e293b"
+                    stroke="#ffffff"
                     strokeWidth="10"
                     strokeLinecap="round"
                     className="drop-shadow-lg"
