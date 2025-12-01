@@ -19,17 +19,8 @@ export const PorscheCarreraGT: React.FC<PorscheCarreraGTProps> = ({ onBack }) =>
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-center p-grid-4 relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://ndbqdwlncrtrjztuiwvv.supabase.co/storage/v1/object/public/Images/68075dd2-1d43-464e-a8b1-814f49244abf/1763918540624-ju35cr.jpeg" 
-          alt="Background" 
-          className="w-full h-full object-cover"
-        />
-        {/* Blue Filter Overlay */}
-        <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-blue-900/50 to-blue-950/60" />
-      </div>
+      {/* Background */}
+      <div className="absolute inset-0 z-0 bg-slate-950" />
 
       {/* Back Button */}
       <button
