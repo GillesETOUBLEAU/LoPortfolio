@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const AUTH_TOKEN_KEY = 'portfolio_auth_token';
+import { AUTH_TOKEN_KEY } from '../constants';
 
 interface AuthState {
   isAuthenticated: boolean;

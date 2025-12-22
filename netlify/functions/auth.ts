@@ -1,26 +1,69 @@
-import { Handler } from '@netlify/functions';
+import { Handler, HandlerEvent } from '@netlify/functions';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+// Required environment variables - no defaults for security
+const JWT_SECRET = process.env.JWT_SECRET;
 const PASSWORD_HASH = process.env.NETLIFY_PASSWORD_HASH;
 
-export const handler: Handler = async (event) => {
-  // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' }),
-    };
-  }
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX_ATTEMPTS = 5;
 
-  // CORS headers
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
+// In-memory rate limiting store (resets on function cold start)
+const rateLimitStore = new Map<string, { attempts: number; resetTime: number }>();
+
+// CORS configuration
+const ALLOWED_ORIGINS = [
+  'https://your-domain.netlify.app',
+  'http://localhost:3000',
+  'http://localhost:5173',
+];
+
+function getCORSHeaders(origin: string | undefined): Record<string, string> {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Content-Type': 'application/json',
   };
+}
+
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
+  const now = Date.now();
+  const record = rateLimitStore.get(ip);
+
+  // Clean up expired records
+  if (record && now > record.resetTime) {
+    rateLimitStore.delete(ip);
+  }
+
+  const currentRecord = rateLimitStore.get(ip);
+
+  if (!currentRecord) {
+    rateLimitStore.set(ip, {
+      attempts: 1,
+      resetTime: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return { allowed: true, remaining: RATE_LIMIT_MAX_ATTEMPTS - 1 };
+  }
+
+  if (currentRecord.attempts >= RATE_LIMIT_MAX_ATTEMPTS) {
+    return { allowed: false, remaining: 0 };
+  }
+
+  currentRecord.attempts++;
+  return {
+    allowed: true,
+    remaining: RATE_LIMIT_MAX_ATTEMPTS - currentRecord.attempts,
+  };
+}
+
+export const handler: Handler = async (event: HandlerEvent) => {
+  const origin = event.headers.origin;
+  const headers = getCORSHeaders(origin);
 
   // Handle preflight
   if (event.httpMethod === 'OPTIONS') {
@@ -31,13 +74,51 @@ export const handler: Handler = async (event) => {
     };
   }
 
+  // Only allow POST requests
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ error: 'Method not allowed' }),
+    };
+  }
+
   try {
+    // Validate required environment variables
+    if (!JWT_SECRET) {
+      console.error('JWT_SECRET environment variable is not set');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: 'Server configuration error: Missing JWT_SECRET' }),
+      };
+    }
+
     if (!PASSWORD_HASH) {
       console.error('NETLIFY_PASSWORD_HASH environment variable is not set');
       return {
         statusCode: 500,
         headers,
-        body: JSON.stringify({ error: 'Server configuration error' }),
+        body: JSON.stringify({ error: 'Server configuration error: Missing PASSWORD_HASH' }),
+      };
+    }
+
+    // Rate limiting based on IP
+    const clientIp = event.headers['x-forwarded-for']?.split(',')[0] || 'unknown';
+    const rateLimitCheck = checkRateLimit(clientIp);
+
+    if (!rateLimitCheck.allowed) {
+      console.warn(`Rate limit exceeded for IP: ${clientIp}`);
+      return {
+        statusCode: 429,
+        headers: {
+          ...headers,
+          'Retry-After': String(Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)),
+        },
+        body: JSON.stringify({
+          error: 'Too many login attempts. Please try again later.',
+          retryAfter: RATE_LIMIT_WINDOW_MS / 1000,
+        }),
       };
     }
 
@@ -55,19 +136,25 @@ export const handler: Handler = async (event) => {
     const isValid = await bcrypt.compare(password, PASSWORD_HASH);
 
     if (!isValid) {
+      console.warn(`Failed login attempt from IP: ${clientIp}`);
       return {
         statusCode: 401,
         headers,
-        body: JSON.stringify({ error: 'Invalid password' }),
+        body: JSON.stringify({
+          error: 'Invalid password',
+          remaining: rateLimitCheck.remaining,
+        }),
       };
     }
 
-    // Generate JWT token
+    // Generate JWT token (reduced to 7 days for better security)
     const token = jwt.sign(
       { authenticated: true, timestamp: Date.now() },
       JWT_SECRET,
-      { expiresIn: '30d' }
+      { expiresIn: '7d' }
     );
+
+    console.log(`Successful login from IP: ${clientIp}`);
 
     return {
       statusCode: 200,

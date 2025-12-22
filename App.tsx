@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Cover } from './slides/Cover';
 import { Quote } from './slides/Quote';
 import { Experience } from './slides/Experience';
@@ -8,18 +8,11 @@ import { Roadmap } from './slides/Roadmap';
 import { Conclusion } from './slides/Conclusion';
 import { Navigation } from './components/Navigation';
 import { Login } from './components/Login';
+import { DetailPageRouter } from './components/DetailPageRouter';
 import { useAuth } from './hooks/useAuth';
-import { PorschePanamera } from './pages/PorschePanamera';
-import { DucatiMultistradaV4 } from './pages/DucatiMultistradaV4';
-import { DucatiXDiavel } from './pages/DucatiXDiavel';
-import { DucatiMonster } from './pages/DucatiMonster';
-import { DucatiScramblerAwareness } from './pages/DucatiScramblerAwareness';
-import { NewPorsche911 } from './pages/NewPorsche911';
-import { PorscheCarreraGT } from './pages/PorscheCarreraGT';
-import { DucatiXDiavelPress } from './pages/DucatiXDiavelPress';
-import { PorscheClubs50Year } from './pages/PorscheClubs50Year';
-import { DucatiScramblerCustomFlatTrack } from './pages/DucatiScramblerCustomFlatTrack';
-import { AlpesAventureMotoFestival } from './pages/AlpesAventureMotoFestival';
+import { useNavigationState } from './hooks/useNavigationState';
+import { PageId } from './constants';
+import { SCROLL_DEBOUNCE_MS } from './constants';
 
 const slides = [
   { id: 'cover', component: Cover, label: 'Cover' },
@@ -33,19 +26,16 @@ const slides = [
 
 const App: React.FC = () => {
   const { isAuthenticated, isLoading, login, error } = useAuth();
-  const [activeSlide, setActiveSlide] = useState(slides[0].id);
-  const [currentPage, setCurrentPage] = useState<'slides' | 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt' | 'ducati-x-diavel-press' | 'porsche-clubs-50-year' | 'ducati-scrambler-custom-flat-track' | 'alpes-aventure-moto-festival'>('slides');
-  const [returnToSlide, setReturnToSlide] = useState<string>('ecosystem');
-  const [activeTab, setActiveTab] = useState<'product' | 'crm' | 'press' | 'dealer'>('product');
+  const { state, setActiveSlide, setActiveTab, navigateToDetailPage, navigateBackToSlides } = useNavigationState(slides[0].id);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
     const scrollPosition = container.scrollTop;
     const slideHeight = container.clientHeight;
-    
+
     // Calculate current slide index
     const index = Math.round(scrollPosition / slideHeight);
-    if (slides[index] && slides[index].id !== activeSlide) {
+    if (slides[index] && slides[index].id !== state.activeSlide) {
       setActiveSlide(slides[index].id);
     }
   };
@@ -57,18 +47,16 @@ const App: React.FC = () => {
     }
   };
 
-  const navigateToDetailPage = (pageId: string, fromSlide: string, fromTab: 'product' | 'crm' | 'press' | 'dealer') => {
-    setReturnToSlide(fromSlide);
-    setActiveTab(fromTab);
-    setCurrentPage(pageId as 'porsche-panamera' | 'ducati-multistrada-v4' | 'ducati-x-diavel' | 'ducati-monster' | 'ducati-scrambler-awareness' | 'new-porsche-911' | 'porsche-carrera-gt' | 'ducati-x-diavel-press' | 'porsche-clubs-50-year' | 'ducati-scrambler-custom-flat-track' | 'alpes-aventure-moto-festival');
+  const handleNavigateToDetailPage = (pageId: string, fromSlide: string, fromTab: 'product' | 'crm' | 'press' | 'dealer') => {
+    navigateToDetailPage(pageId as PageId, fromSlide, fromTab);
   };
 
-  const navigateBackToSlides = () => {
-    setCurrentPage('slides');
+  const handleNavigateBackToSlides = () => {
+    navigateBackToSlides();
     // Scroll to the slide we came from after a brief delay to ensure DOM is ready
     setTimeout(() => {
-      scrollToSlide(returnToSlide);
-    }, 100);
+      scrollToSlide(state.returnToSlide);
+    }, SCROLL_DEBOUNCE_MS);
   };
 
   // Show loading state while checking authentication
@@ -86,115 +74,9 @@ const App: React.FC = () => {
     return <Login onLogin={login} isLoading={isLoading} error={error} />;
   }
 
-  // Render detail pages
-  if (currentPage === 'porsche-panamera') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <PorschePanamera onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'ducati-multistrada-v4') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <DucatiMultistradaV4 onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'ducati-x-diavel') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <DucatiXDiavel onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'ducati-monster') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <DucatiMonster onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'ducati-scrambler-awareness') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <DucatiScramblerAwareness onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'new-porsche-911') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <NewPorsche911 onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'porsche-carrera-gt') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <PorscheCarreraGT onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'ducati-x-diavel-press') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <DucatiXDiavelPress onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'porsche-clubs-50-year') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <PorscheClubs50Year onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'ducati-scrambler-custom-flat-track') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <DucatiScramblerCustomFlatTrack onBack={navigateBackToSlides} />
-      </div>
-    );
-  }
-
-  if (currentPage === 'alpes-aventure-moto-festival') {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden">
-        {/* Global Background Noise/Gradient Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <AlpesAventureMotoFestival onBack={navigateBackToSlides} />
-      </div>
-    );
+  // Render detail page if we're not on the slides view
+  if (state.currentPage !== 'slides') {
+    return <DetailPageRouter pageId={state.currentPage} onBack={handleNavigateBackToSlides} />;
   }
 
   return (
@@ -203,31 +85,31 @@ const App: React.FC = () => {
       {/* Global Background Noise/Gradient Texture */}
       <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
       
-      <Navigation 
+      <Navigation
         items={slides.map(s => ({ id: s.id, label: s.label }))}
-        activeId={activeSlide}
+        activeId={state.activeSlide}
         onNavigate={scrollToSlide}
       />
 
-      <div 
+      <div
         className="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth hide-scrollbar"
         onScroll={handleScroll}
       >
         {slides.map((slide) => (
-          <section 
-            key={slide.id} 
+          <section
+            key={slide.id}
             id={slide.id}
             className="w-full h-screen snap-start relative flex items-center justify-center"
           >
             <div className="w-full h-full relative z-10">
               {slide.id === 'ecosystem' ? (
-                <slide.component 
-                  onNavigateToDetail={navigateToDetailPage} 
-                  activeTab={activeTab}
+                <slide.component
+                  onNavigateToDetail={handleNavigateToDetailPage}
+                  activeTab={state.activeTab}
                   onTabChange={setActiveTab}
                 />
               ) : (
-                <slide.component onNavigateToDetail={navigateToDetailPage} />
+                <slide.component onNavigateToDetail={handleNavigateToDetailPage} />
               )}
             </div>
           </section>
