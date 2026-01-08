@@ -1,6 +1,5 @@
-import { Handler, HandlerEvent } from '@netlify/functions';
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Default password: Denon230770!
 const DEFAULT_PASSWORD_HASH = '$2a$10$iWwPb1jzdH354vD8xQmboufPT2zxEbNp.xQsQm3fslCk8a445zs1W';
@@ -14,7 +13,7 @@ const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 const RATE_LIMIT_MAX_ATTEMPTS = 5;
 
 // In-memory rate limiting store (resets on function cold start)
-const rateLimitStore = new Map<string, { attempts: number; resetTime: number }>();
+const rateLimitStore = new Map();
 
 // CORS configuration
 const ALLOWED_ORIGINS = [
@@ -23,7 +22,7 @@ const ALLOWED_ORIGINS = [
   'http://localhost:5173',
 ];
 
-function getCORSHeaders(origin: string | undefined): Record<string, string> {
+function getCORSHeaders(origin) {
   const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
 
   return {
@@ -34,7 +33,7 @@ function getCORSHeaders(origin: string | undefined): Record<string, string> {
   };
 }
 
-function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
+function checkRateLimit(ip) {
   const now = Date.now();
   const record = rateLimitStore.get(ip);
 
@@ -64,7 +63,7 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
   };
 }
 
-export const handler: Handler = async (event: HandlerEvent) => {
+exports.handler = async (event) => {
   const origin = event.headers.origin;
   const headers = getCORSHeaders(origin);
 
@@ -154,4 +153,3 @@ export const handler: Handler = async (event: HandlerEvent) => {
     };
   }
 };
-
