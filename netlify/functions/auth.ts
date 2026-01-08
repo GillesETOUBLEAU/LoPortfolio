@@ -2,9 +2,12 @@ import { Handler, HandlerEvent } from '@netlify/functions';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-// Required environment variables - no defaults for security
-const JWT_SECRET = process.env.JWT_SECRET;
-const PASSWORD_HASH = process.env.NETLIFY_PASSWORD_HASH;
+// Default password: Denon230770!
+const DEFAULT_PASSWORD_HASH = '$2a$10$iWwPb1jzdH354vD8xQmboufPT2zxEbNp.xQsQm3fslCk8a445zs1W';
+const DEFAULT_JWT_SECRET = 'laurence-etoubleau-portfolio-jwt-secret-key-2024';
+
+const JWT_SECRET = process.env.JWT_SECRET || DEFAULT_JWT_SECRET;
+const PASSWORD_HASH = process.env.NETLIFY_PASSWORD_HASH || DEFAULT_PASSWORD_HASH;
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
@@ -84,25 +87,6 @@ export const handler: Handler = async (event: HandlerEvent) => {
   }
 
   try {
-    // Validate required environment variables
-    if (!JWT_SECRET) {
-      console.error('JWT_SECRET environment variable is not set');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Server configuration error: Missing JWT_SECRET' }),
-      };
-    }
-
-    if (!PASSWORD_HASH) {
-      console.error('NETLIFY_PASSWORD_HASH environment variable is not set');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Server configuration error: Missing PASSWORD_HASH' }),
-      };
-    }
-
     // Rate limiting based on IP
     const clientIp = event.headers['x-forwarded-for']?.split(',')[0] || 'unknown';
     const rateLimitCheck = checkRateLimit(clientIp);
