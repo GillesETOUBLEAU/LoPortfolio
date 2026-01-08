@@ -1,6 +1,6 @@
 import { Handler, HandlerEvent } from '@netlify/functions';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
 
 // Default password: Denon230770!
 const DEFAULT_PASSWORD_HASH = '$2a$10$iWwPb1jzdH354vD8xQmboufPT2zxEbNp.xQsQm3fslCk8a445zs1W';
