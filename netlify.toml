@@ -4,6 +4,7 @@
 
 [build.environment]
   SECRETS_SCAN_OMIT_PATHS = "netlify/functions/auth.js"
+  NETLIFY_USE_CACHE = "false"
 
 [[redirects]]
   from = "/api/*"

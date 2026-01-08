@@ -65,6 +65,10 @@ function checkRateLimit(ip) {
 }
 
 exports.handler = async (event) => {
+  console.log('=== AUTH FUNCTION VERSION 2024-01-08-v2 ===');
+  console.log('JWT_SECRET:', JWT_SECRET ? 'SET' : 'NOT SET');
+  console.log('PASSWORD_HASH:', PASSWORD_HASH ? 'SET' : 'NOT SET');
+
   const origin = event.headers.origin;
   const headers = getCORSHeaders(origin);
 
