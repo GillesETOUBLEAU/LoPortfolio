@@ -1,26 +1,29 @@
-import { Handler, HandlerEvent } from '@netlify/functions';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-// Required environment variables - no defaults for security
-const JWT_SECRET = process.env.JWT_SECRET;
-const PASSWORD_HASH = process.env.NETLIFY_PASSWORD_HASH;
+// Portfolio Authentication - Password: Denon230770!
+// Version: 2024-01-08 - No environment variables required
+const DEFAULT_PASSWORD_HASH = '$2a$10$iWwPb1jzdH354vD8xQmboufPT2zxEbNp.xQsQm3fslCk8a445zs1W';
+const DEFAULT_JWT_SECRET = 'laurence-etoubleau-portfolio-jwt-secret-key-2024';
+
+const JWT_SECRET = process.env.JWT_SECRET || DEFAULT_JWT_SECRET;
+const PASSWORD_HASH = process.env.NETLIFY_PASSWORD_HASH || DEFAULT_PASSWORD_HASH;
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 const RATE_LIMIT_MAX_ATTEMPTS = 5;
 
 // In-memory rate limiting store (resets on function cold start)
-const rateLimitStore = new Map<string, { attempts: number; resetTime: number }>();
+const rateLimitStore = new Map();
 
 // CORS configuration
 const ALLOWED_ORIGINS = [
-  'https://your-domain.netlify.app',
+  'https://lo-portfolio.netlify.app',
   'http://localhost:3000',
   'http://localhost:5173',
 ];
 
-function getCORSHeaders(origin: string | undefined): Record<string, string> {
+function getCORSHeaders(origin) {
   const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
 
   return {
@@ -31,7 +34,7 @@ function getCORSHeaders(origin: string | undefined): Record<string, string> {
   };
 }
 
-function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
+function checkRateLimit(ip) {
   const now = Date.now();
   const record = rateLimitStore.get(ip);
 
@@ -61,7 +64,11 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
   };
 }
 
-export const handler: Handler = async (event: HandlerEvent) => {
+exports.handler = async (event) => {
+  console.log('=== AUTH FUNCTION VERSION 2024-01-08-v2 ===');
+  console.log('JWT_SECRET:', JWT_SECRET ? 'SET' : 'NOT SET');
+  console.log('PASSWORD_HASH:', PASSWORD_HASH ? 'SET' : 'NOT SET');
+
   const origin = event.headers.origin;
   const headers = getCORSHeaders(origin);
 
@@ -84,27 +91,9 @@ export const handler: Handler = async (event: HandlerEvent) => {
   }
 
   try {
-    // Validate required environment variables
-    if (!JWT_SECRET) {
-      console.error('JWT_SECRET environment variable is not set');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Server configuration error: Missing JWT_SECRET' }),
-      };
-    }
-
-    if (!PASSWORD_HASH) {
-      console.error('NETLIFY_PASSWORD_HASH environment variable is not set');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Server configuration error: Missing PASSWORD_HASH' }),
-      };
-    }
-
     // Rate limiting based on IP
-    const clientIp = event.headers['x-forwarded-for']?.split(',')[0] || 'unknown';
+    const forwardedFor = event.headers['x-forwarded-for'] || event.headers['X-Forwarded-For'];
+    const clientIp = forwardedFor ? forwardedFor.split(',')[0] : 'unknown';
     const rateLimitCheck = checkRateLimit(clientIp);
 
     if (!rateLimitCheck.allowed) {
@@ -163,11 +152,15 @@ export const handler: Handler = async (event: HandlerEvent) => {
     };
   } catch (error) {
     console.error('Auth error:', error);
+    console.error('Error stack:', error.stack);
+    console.error('Error message:', error.message);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      body: JSON.stringify({
+        error: 'Internal server error',
+        message: error.message
+      }),
     };
   }
 };
-

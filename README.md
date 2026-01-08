@@ -35,25 +35,16 @@ Interactive portfolio presentation built with React, TypeScript, and Vite.
    npm test
    ```
 
-## Authentication Setup
+## Authentication
 
-This portfolio is protected by password authentication using Netlify serverless functions with rate limiting (5 attempts per 15 minutes).
+This portfolio is password-protected with the password: **Denon230770!**
 
-### Setting up the password:
+The authentication includes:
+- Rate limiting (5 attempts per 15 minutes)
+- JWT token storage (7-day expiration)
+- Automatic authentication bypass in development mode
 
-1. Generate a bcrypt hash for your password:
-   ```bash
-   node -e "const bcrypt = require('bcryptjs'); bcrypt.hash('your-password', 10).then(hash => console.log(hash));"
-   ```
-
-2. In Netlify Dashboard:
-   - Go to **Site settings** > **Environment variables**
-   - Add `NETLIFY_PASSWORD_HASH` with the generated hash
-   - Add `JWT_SECRET` with a strong random secret string (**REQUIRED** - no default for security)
-
-3. Update `ALLOWED_ORIGINS` in `/netlify/functions/auth.ts` with your production domain
-
-4. The password will be validated server-side, and a JWT token will be stored in localStorage for 7 days.
+No configuration needed - just deploy and it works!
 
 ## Architecture
 
