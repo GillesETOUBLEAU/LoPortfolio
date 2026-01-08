@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Default password: Denon230770!
+// Portfolio Authentication - Password: Denon230770!
+// Version: 2024-01-08 - No environment variables required
 const DEFAULT_PASSWORD_HASH = '$2a$10$iWwPb1jzdH354vD8xQmboufPT2zxEbNp.xQsQm3fslCk8a445zs1W';
 const DEFAULT_JWT_SECRET = 'laurence-etoubleau-portfolio-jwt-secret-key-2024';
 
