@@ -87,7 +87,8 @@ exports.handler = async (event) => {
 
   try {
     // Rate limiting based on IP
-    const clientIp = event.headers['x-forwarded-for']?.split(',')[0] || 'unknown';
+    const forwardedFor = event.headers['x-forwarded-for'] || event.headers['X-Forwarded-For'];
+    const clientIp = forwardedFor ? forwardedFor.split(',')[0] : 'unknown';
     const rateLimitCheck = checkRateLimit(clientIp);
 
     if (!rateLimitCheck.allowed) {
@@ -146,10 +147,15 @@ exports.handler = async (event) => {
     };
   } catch (error) {
     console.error('Auth error:', error);
+    console.error('Error stack:', error.stack);
+    console.error('Error message:', error.message);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      body: JSON.stringify({
+        error: 'Internal server error',
+        message: error.message
+      }),
     };
   }
 };
