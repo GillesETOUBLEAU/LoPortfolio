@@ -18,7 +18,7 @@ const rateLimitStore = new Map<string, { attempts: number; resetTime: number }>(
 
 // CORS configuration
 const ALLOWED_ORIGINS = [
-  'https://your-domain.netlify.app',
+  'https://lo-portfolio.netlify.app',
   'http://localhost:3000',
   'http://localhost:5173',
 ];
