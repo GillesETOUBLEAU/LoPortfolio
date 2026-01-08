@@ -41,17 +41,30 @@ This portfolio is protected by password authentication using Netlify serverless 
 
 ### Setting up the password:
 
-1. Generate a bcrypt hash for your password:
-   ```bash
-   node -e "const bcrypt = require('bcryptjs'); bcrypt.hash('your-password', 10).then(hash => console.log(hash));"
-   ```
+#### Option 1: Using the utility script (recommended)
+```bash
+node scripts/generate-password-hash.js "your-password-here"
+```
 
-2. In Netlify Dashboard:
+#### Option 2: Manual generation
+```bash
+node -e "const bcrypt = require('bcryptjs'); bcrypt.hash('your-password', 10).then(hash => console.log(hash));"
+```
+
+### Netlify Configuration:
+
+1. In Netlify Dashboard:
    - Go to **Site settings** > **Environment variables**
    - Add `NETLIFY_PASSWORD_HASH` with the generated hash
-   - Add `JWT_SECRET` with a strong random secret string (**REQUIRED** - no default for security)
+   - Add `JWT_SECRET` with a strong random secret string (**REQUIRED** - 32+ characters recommended)
+     ```bash
+     # Generate JWT_SECRET:
+     openssl rand -base64 32
+     ```
 
-3. Update `ALLOWED_ORIGINS` in `/netlify/functions/auth.ts` with your production domain
+2. Update `ALLOWED_ORIGINS` in `/netlify/functions/auth.ts` with your production domain
+
+3. Redeploy your site for the changes to take effect
 
 4. The password will be validated server-side, and a JWT token will be stored in localStorage for 7 days.
 
