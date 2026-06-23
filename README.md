@@ -37,8 +37,6 @@ Interactive portfolio presentation built with React, TypeScript, and Vite.
 
 ## Authentication
 
-This portfolio is password-protected with the password: **Denon230770!**
-
 The authentication includes:
 - Rate limiting (5 attempts per 15 minutes)
 - JWT token storage (7-day expiration)
