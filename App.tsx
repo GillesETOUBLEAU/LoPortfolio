@@ -6,6 +6,7 @@ import { Funnel } from './slides/Funnel';
 import { OrbitSystem } from './slides/OrbitSystem';
 import { Roadmap } from './slides/Roadmap';
 import { Conclusion } from './slides/Conclusion';
+import { ContactForm } from './components/ContactForm';
 import { Navigation } from './components/Navigation';
 import { DetailPageRouter } from './components/DetailPageRouter';
 import { useNavigationState } from './hooks/useNavigationState';
@@ -20,6 +21,7 @@ const slides = [
   { id: 'ecosystem', component: OrbitSystem, label: 'Ecosystem' },
   { id: 'roadmap', component: Roadmap, label: 'Roadmap' },
   { id: 'conclusion', component: Conclusion, label: 'Conclusion' },
+  { id: 'contact', component: ContactForm, label: 'Contact' },
 ];
 
 const App: React.FC = () => {

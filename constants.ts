@@ -7,7 +7,7 @@ export const ORBIT_RADIUS = 42; // Percentage from center
 export const ORBIT_NODE_COUNT = 8;
 
 // Slide Navigation
-export const TOTAL_SLIDES = 7;
+export const TOTAL_SLIDES = 8;
 
 // Page Types
 export const PAGE_IDS = {
