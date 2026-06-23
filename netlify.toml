@@ -1,17 +1,3 @@
 [build]
   command = "npm run build"
   publish = "dist"
-
-[build.environment]
-  SECRETS_SCAN_OMIT_PATHS = "netlify/functions/auth.js"
-  NETLIFY_USE_CACHE = "false"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "nft"
-

@@ -1,7 +1,3 @@
-// Authentication
-export const AUTH_TOKEN_KEY = 'portfolio_auth_token';
-export const JWT_EXPIRATION_DAYS = 7; // Reduced from 30 days for better security
-
 // Animation & Timing
 export const ORBIT_ANIMATION_DURATION = '60s';
 export const SCROLL_DEBOUNCE_MS = 100;
@@ -32,14 +28,3 @@ export type PageId = typeof PAGE_IDS[keyof typeof PAGE_IDS];
 
 // Asset URLs - Supabase Storage
 export const ASSET_BASE_URL = 'https://ldbvwhitqyolhkqxhiuw.supabase.co/storage/v1/object/public/zero-assets';
-
-// Rate Limiting
-export const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-export const RATE_LIMIT_MAX_ATTEMPTS = 5; // Max login attempts per window
-
-// CORS
-export const ALLOWED_ORIGINS = [
-  'https://your-domain.netlify.app',
-  'http://localhost:3000',
-  'http://localhost:5173', // Vite default port
-];

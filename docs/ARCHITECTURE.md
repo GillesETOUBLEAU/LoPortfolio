@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an interactive portfolio application built as a full-screen presentation with password-protected access. The application uses a modern React stack with TypeScript and serverless authentication.
+This is an interactive portfolio application built as a full-screen presentation. The application uses a modern React stack with TypeScript.
 
 ## Technology Stack
 
@@ -11,11 +11,6 @@ This is an interactive portfolio application built as a full-screen presentation
 - **TypeScript 5.8.2** - Type safety
 - **Vite 6.2.0** - Build tool and dev server
 - **Tailwind CSS** - Utility-first styling (loaded via CDN)
-
-### Backend
-- **Netlify Functions** - Serverless API endpoints
-- **bcryptjs 2.4.3** - Password hashing
-- **jsonwebtoken 9.0.2** - JWT token generation
 
 ### Testing
 - **Vitest 3.2.4** - Testing framework
@@ -28,14 +23,12 @@ This is an interactive portfolio application built as a full-screen presentation
 LoPortfolio/
 ├── components/           # Reusable UI components
 │   ├── ErrorBoundary.tsx    # Error boundary for graceful error handling
-│   ├── Login.tsx            # Login form component
 │   ├── Navigation.tsx       # Slide navigation dots
 │   ├── GlassCard.tsx        # Glassmorphism card component
 │   ├── DetailPageRouter.tsx # Router for detail pages with lazy loading
 │   └── OrbitDiagram.tsx     # Orbital ecosystem visualization
 │
 ├── hooks/                # Custom React hooks
-│   ├── useAuth.ts           # Authentication hook
 │   └── useNavigationState.ts # Navigation state management with useReducer
 │
 ├── pages/                # Detail page components (11 pages)
@@ -52,12 +45,8 @@ LoPortfolio/
 │   ├── Roadmap.tsx
 │   └── Conclusion.tsx
 │
-├── netlify/functions/    # Serverless backend
-│   └── auth.ts              # Authentication endpoint
-│
 ├── docs/                 # Documentation
-│   ├── ARCHITECTURE.md      # This file
-│   └── API.md               # API documentation
+│   └── ARCHITECTURE.md      # This file
 │
 ├── constants.ts          # Shared constants and types
 ├── types.ts              # TypeScript type definitions
@@ -77,7 +66,6 @@ ErrorBoundary (Error Handling)
     ↓
 App.tsx (Main App Logic)
     ↓
-├── Login (if not authenticated)
 ├── DetailPageRouter (if on detail page)
 └── Slides View (default)
     ├── Navigation
@@ -102,29 +90,6 @@ NavigationState {
 - `SET_ACTIVE_TAB` - Update active tab
 - `NAVIGATE_TO_DETAIL_PAGE` - Navigate to detail page
 - `NAVIGATE_BACK_TO_SLIDES` - Return to slides view
-
-### Authentication Flow
-
-1. **Initial Load:**
-   - `useAuth` hook checks localStorage for existing JWT token
-   - Validates token expiration
-   - Sets authentication state
-
-2. **Login:**
-   - User submits password
-   - POST request to `/api/auth`
-   - Backend validates with bcrypt
-   - Returns JWT token (7-day expiration)
-   - Token stored in localStorage
-
-3. **Rate Limiting:**
-   - 5 attempts per 15-minute window per IP
-   - In-memory storage (resets on function cold start)
-   - Returns 429 status when limit exceeded
-
-4. **Development Mode:**
-   - Authentication bypassed when `import.meta.env.DEV === true`
-   - For easier local development
 
 ### Detail Page Routing
 
@@ -172,9 +137,7 @@ All views include a noise texture overlay:
 ### Constants Management
 
 All magic numbers and configuration are centralized in `constants.ts`:
-- Authentication settings
 - Animation durations
-- Rate limiting config
 - Page IDs (using `as const` for type safety)
 
 ## Performance Optimizations
@@ -191,47 +154,14 @@ All magic numbers and configuration are centralized in `constants.ts`:
    - OrbitDiagram calculations could be memoized
    - Slide components could use React.memo
 
-## Security Features
-
-1. **No Default Secrets:**
-   - JWT_SECRET is required (no fallback)
-   - Fails fast if not configured
-
-2. **Rate Limiting:**
-   - Prevents brute force attacks
-   - IP-based tracking
-
-3. **CORS Protection:**
-   - Configurable allowed origins
-   - Blocks unauthorized domains
-
-4. **Input Validation:**
-   - Password required check
-   - Token format validation
-
-5. **XSS Protection:**
-   - React's built-in escaping
-   - No dangerouslySetInnerHTML usage
-
 ## Accessibility
 
 - **ARIA Labels:** All interactive elements labeled
 - **Keyboard Navigation:** Full keyboard support
 - **Screen Readers:** Proper semantic HTML
 - **Focus Management:** Visible focus indicators
-- **Error Announcements:** `role="alert"` for errors
 
 ## Testing Strategy
-
-### Unit Tests
-- `useAuth.test.ts` - Auth hook logic
-- `Login.test.tsx` - Login component
-
-### Test Coverage Areas
-1. Token validation (expired, malformed, valid)
-2. Login flow (success, failure, network errors)
-3. Form interaction (submit, disable states)
-4. Error display
 
 ### Running Tests
 ```bash
@@ -254,21 +184,14 @@ npm run build  # Build to /dist
 
 ### Netlify Deployment
 
-**Required Environment Variables:**
-- `NETLIFY_PASSWORD_HASH` - bcrypt hash of password
-- `JWT_SECRET` - Strong random string for JWT signing
-
 **Build Settings:**
 - Build command: `npm run build`
 - Publish directory: `dist`
-- Functions directory: `netlify/functions`
 
 ## Future Improvements
 
-1. **httpOnly Cookies:** Move JWT from localStorage to httpOnly cookies
-2. **Persistent Rate Limiting:** Use Redis/database instead of in-memory
-3. **Analytics:** Add privacy-respecting analytics
-4. **SEO:** Add meta tags and Open Graph tags
-5. **Performance Monitoring:** Add error tracking (Sentry)
-6. **A11y Audit:** Run automated accessibility tests
-7. **E2E Tests:** Add Playwright/Cypress tests
+1. **Analytics:** Add privacy-respecting analytics
+2. **SEO:** Add meta tags and Open Graph tags
+3. **Performance Monitoring:** Add error tracking (Sentry)
+4. **A11y Audit:** Run automated accessibility tests
+5. **E2E Tests:** Add Playwright/Cypress tests

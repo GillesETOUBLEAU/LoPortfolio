@@ -8,11 +8,9 @@ Interactive portfolio presentation built with React, TypeScript, and Vite.
 
 ## Features
 
-- 🔐 Password-protected access with JWT authentication
 - 📱 Responsive full-screen presentation slides
 - 🎨 Glassmorphism design with smooth animations
 - 🚀 Lazy-loaded detail pages for optimal performance
-- 🛡️ Rate limiting and CORS protection
 - ✅ Comprehensive test coverage with Vitest
 - 🎯 Error boundaries for graceful error handling
 
@@ -35,34 +33,14 @@ Interactive portfolio presentation built with React, TypeScript, and Vite.
    npm test
    ```
 
-## Authentication
-
-The authentication includes:
-- Rate limiting (5 attempts per 15 minutes)
-- JWT token storage (7-day expiration)
-- Automatic authentication bypass in development mode
-
-No configuration needed - just deploy and it works!
-
 ## Architecture
 
 - **Frontend:** React 19 + TypeScript + Vite
 - **Styling:** Tailwind CSS (CDN)
 - **State Management:** Custom hooks with useReducer
 - **Routing:** Custom detail page router with lazy loading
-- **Backend:** Netlify Functions (serverless)
-- **Authentication:** bcrypt + JWT
 - **Testing:** Vitest + React Testing Library
-
-## Security Features
-
-- ✅ Required environment variables (no fallback secrets)
-- ✅ Rate limiting on authentication endpoint
-- ✅ CORS restrictions (configurable origins)
-- ✅ JWT token with 7-day expiration
-- ✅ bcrypt password hashing
-- ✅ Input validation
 
 ## Development Notes
 
-In development mode (`npm run dev`), authentication is bypassed for easier testing.
+In development mode (`npm run dev`), the app runs without authentication.

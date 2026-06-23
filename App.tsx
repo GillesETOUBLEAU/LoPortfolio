@@ -7,9 +7,7 @@ import { OrbitSystem } from './slides/OrbitSystem';
 import { Roadmap } from './slides/Roadmap';
 import { Conclusion } from './slides/Conclusion';
 import { Navigation } from './components/Navigation';
-import { Login } from './components/Login';
 import { DetailPageRouter } from './components/DetailPageRouter';
-import { useAuth } from './hooks/useAuth';
 import { useNavigationState } from './hooks/useNavigationState';
 import { PageId } from './constants';
 import { SCROLL_DEBOUNCE_MS } from './constants';
@@ -25,7 +23,6 @@ const slides = [
 ];
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, login, error } = useAuth();
   const { state, setActiveSlide, setActiveTab, navigateToDetailPage, navigateBackToSlides } = useNavigationState(slides[0].id);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -58,21 +55,6 @@ const App: React.FC = () => {
       scrollToSlide(state.returnToSlide);
     }, SCROLL_DEBOUNCE_MS);
   };
-
-  // Show loading state while checking authentication
-  if (isLoading) {
-    return (
-      <div className="relative w-full h-screen bg-slate-950 text-white font-sans overflow-hidden flex items-center justify-center">
-        <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150 z-0"></div>
-        <div className="relative z-10">Loading...</div>
-      </div>
-    );
-  }
-
-  // Show login page if not authenticated
-  if (!isAuthenticated) {
-    return <Login onLogin={login} isLoading={isLoading} error={error} />;
-  }
 
   // Render detail page if we're not on the slides view
   if (state.currentPage !== 'slides') {

@@ -53,26 +53,7 @@ export default defineConfig({
 });
 ```
 
-## Test Files
-
-### Unit Tests
-
-#### `hooks/useAuth.test.ts`
-Tests the authentication hook:
-- ✅ Token validation (expired, malformed, valid)
-- ✅ Login flow (success, failure, network errors)
-- ✅ Token storage in localStorage
-- ✅ Error handling
-
-#### `components/Login.test.tsx`
-Tests the login component:
-- ✅ Form rendering
-- ✅ Form submission
-- ✅ Disabled states (loading, empty password)
-- ✅ Error display
-- ✅ Button text changes
-
-## Running Tests (After React 18 Downgrade)
+## Running Tests
 
 ### Watch Mode
 ```bash
@@ -148,8 +129,6 @@ describe('useMyHook', () => {
 ## Test Coverage Goals
 
 ### Critical Paths (Priority 1)
-- ✅ Authentication flow
-- ✅ Login form interaction
 - ⏳ Error boundary behavior
 - ⏳ Navigation state management
 - ⏳ Detail page router
@@ -165,22 +144,10 @@ describe('useMyHook', () => {
 - ⏳ Other slides
 
 ### Integration Tests (Priority 4)
-- ⏳ Full authentication flow (login → slides → detail page)
 - ⏳ Navigation between slides
 - ⏳ Detail page transitions
 
 ## Mocking
-
-### Mocking fetch
-
-```typescript
-global.fetch = vi.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve({ token: 'mock-token' }),
-  } as Response)
-);
-```
 
 ### Mocking localStorage
 
